@@ -47,7 +47,7 @@ for (root,dirs,files) in os.walk('.', topdown=True):
         #st.write (dirs)
         st.write (files)
         st.write ('--------------------------------')
-st.write(path)
+
 if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=path)
 
