@@ -49,7 +49,7 @@ for (root,dirs,files) in os.walk('.', topdown=True):
         st.write ('--------------------------------')
 st.write(path)
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=str(path))
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=path)
 
 path2=os.walk("Output_files/Multi_CARSEC")
 # dirs = os.listdir(path)
