@@ -56,6 +56,7 @@ if uploaded_file is not None:
 path2=os.walk("Output_files/Multi_CARSEC")
 st.write(path1==path2)
 # dirs = os.listdir(path)
+st.write(path1)
 st.write(path2)
 with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
