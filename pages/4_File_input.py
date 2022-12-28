@@ -36,9 +36,9 @@ st.subheader('Download Muti CARSEC files')
 if uploaded_file is not None:
 	with tempfile.TemporaryDirectory() as tmp_dir:
     	# generate some random files in it
-     		files_in_dir = os.listdir(tmp_dir)
+     		files_in_dir = tmp_dir+'/CS_Multi_'
 		st.write(files_in_dir)
-		CS.excel_to_CARSEC(load_path=uploaded_file,export_path=tmp_dir+'/CS_Multi_')
+		CS.excel_to_CARSEC(load_path=uploaded_file,export_path=files_in_dir)
 	
 	
 	
