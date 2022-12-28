@@ -43,7 +43,7 @@ st.subheader('Download Muti CARSEC files')
 #st.write(dirs)
 
 #path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
-path=os.walk("Output_files/Multi_CARSEC")
+path1=tempfile.gettempdir()+"/CS_Multi_"
 
 for (root,dirs,files) in os.walk('.', topdown=True):
         print (root)
@@ -51,7 +51,7 @@ for (root,dirs,files) in os.walk('.', topdown=True):
         print (files)
         print ('--------------------------------')
 if uploaded_file is not None:
-	f=CS.excel_to_CARSEC(load_path=uploaded_file,export_path=str(path))
+	f=CS.excel_to_CARSEC(load_path=uploaded_file,export_path=str(path1))
 	st.write(f)
 
 path2=os.walk("Output_files/Multi_CARSEC")
@@ -60,7 +60,7 @@ path2=os.walk("Output_files/Multi_CARSEC")
 
 with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
-	for file in path:
+	for file in path1:
 		st.write(file)
 		zipObj.write(file)
 	
