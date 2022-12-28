@@ -45,7 +45,7 @@ path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
 for (root,dirs,files) in os.walk('.', topdown=True):
         #st.write (root)
         #st.write (dirs)
-        #st.write (files)
+        st.write (files)
         st.write ('--------------------------------')
 st.write(path)
 if uploaded_file is not None:
