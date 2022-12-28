@@ -47,7 +47,7 @@ print(temp_dir.name)
 
 # Write some files to the temporary directory
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=open(f"{temp_dir.name}/CS_Multi_"))	
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=temp_dir.name)	
 
 
 
