@@ -34,14 +34,18 @@ if uploaded_file is not None:
 st.subheader('Download Muti CARSEC files')
 
 if uploaded_file is not None:
-	multi_name_file = tempfile.gettempdir() + "/Multi_CARSEC"
-	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')
+	with tempfile.TemporaryDirectory() as tmpdirname:
+   		st.write('created temporary directory', tmpdirname)
 	
-
-dirs=tempfile.gettempdir() + "/Multi_CARSEC"
-
-st.write(dirs)
+	
+	#multi_name_file = tempfile.mkdtemp() + "/Multi_CARSEC"
+	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
+	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')
+	
+#tempfile.TemporaryDirectory()
+#dirs=tempfile.gettempdir() + "/Multi_CARSEC"
+#temdir
+#st.write(dirs)
 
 
 #zip_path=tempfile.gettempdir() + "/CARSEC_multi.zip"
