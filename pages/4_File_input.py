@@ -34,9 +34,9 @@ if uploaded_file is not None:
 st.subheader('Download Muti CARSEC files')
 
 if uploaded_file is not None:
-	with tempfile.TemporaryDirectory() as Multi_CARSEC:
+	temp_folder=tempfile.mkdtemp() + "/Multi_CARSEC"
 		
-   		st.write('created temporary directory', Multi_CARSEC)
+   		st.write('created temporary directory', temp_folder)
 	
 	
 	#multi_name_file = tempfile.mkdtemp() + "/Multi_CARSEC"
