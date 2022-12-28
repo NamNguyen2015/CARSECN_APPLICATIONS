@@ -56,4 +56,4 @@ import shutil
 shutil.make_archive(temp_dir.name, 'zip', temp_dir.name)
 
 zip_path = f"{temp_dir.name}.zip"
-st.file_downloader("Download zip file", zip_path)
+st.download_button("Download zip file", zip_path)
