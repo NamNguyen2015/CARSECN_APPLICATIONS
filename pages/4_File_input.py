@@ -17,6 +17,7 @@ from zipfile import ZipFile
 import tempfile
 
 
+
 #%%%%%%%%%%%%%%%%%%
 st.subheader('Download Excel Template input')
 with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
@@ -43,11 +44,10 @@ st.subheader('Download Muti CARSEC files')
 
 path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
 for (root,dirs,files) in os.walk('.', topdown=True):
-    	print(root)
-       	print (dirs)
+        print (root)
+        print (dirs)
         print (files)
         print ('--------------------------------')
-
 if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=str(path))
 
@@ -62,3 +62,4 @@ with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	
 with open('CARSEC_multi.zip', "rb") as fp:
 	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
+
