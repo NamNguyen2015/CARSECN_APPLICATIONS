@@ -42,11 +42,11 @@ st.subheader('Download Muti CARSEC files')
 #st.write(dirs)
 
 path=os.walk("Output_files/Multi_CARSEC/CS_Multi_")
-#for (root,dirs,files) in os.walk('.', topdown=True):
+for (root,dirs,files) in os.walk('.', topdown=True):
         #st.write (root)
         #st.write (dirs)
         #st.write (files)
-        #st.write ('--------------------------------')
+        st.write ('--------------------------------')
 
 if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=str(path))
