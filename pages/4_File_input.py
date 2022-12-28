@@ -12,90 +12,47 @@ import pandas as pd
 import os
 from collections import defaultdict
 from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
+import CARSEC as CS
+from zipfile import ZipFile
 
-#%%# Create a None Database
-
-# =============================================================================
-# DB['secc']=str
-# DB['unid']=str
-# DB['norm']=str
-# DB['coef_horm']= float
-# DB['coef_arma']= float
-# DB['coef_pret']= float
-# DB['punt_contorno']=[0:{'punt':1, 'X':0,'Y':0},'punt':2, 'X':2,'Y':0},...] # pandasDataFrame.to_dict('records')
-# DB['horm']=float
-# DB['contorno_Poligonal']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
-# DB['hc']=[0:{'Punto_Central':5,'Radio':0.3}]
-# DB['arma']=float
-# DB['punt_armadura']=[0:{'Punto_Inicial':6,'Punto_Final':7,'No_Armadura':10, 'Area':0.000314}]
-# DB['LC']=[0:{"Axil":-10, 'monento_X':5, 'monento_Y':2}]
-# 
-# =============================================================================
 
 #%%# 
 
-st.subheader('Preview data')
-# Input excel 
-input_DB = pd.read_excel(
-    r'/Users/namnguyen/Desktop/CARSEC_STREAMLIT/Input_files/CARSEC_excel.xlsx',
-    sheet_name=None, header=0, index_col=None)
-#Show all tables in excel
-list_tables=list(input_DB.keys())
+st.subheader('Download Excel Template input')
 
-for k in list_tables:  
-    st.write(k)
-    st.write(input_DB[k].head(10))
-    
-
-#Create a multi database where each Database equivalents to one unique ID
- 
-ID_list = (input_DB['Properties']['ID'].unique()).tolist()
-
-
-multi_DB={}
-
-for i in ID_list:
-    multi_DB[i]={}
- 
-    for k in list_tables:
-        multi_DB[i][k] = input_DB[k][input_DB[k]['ID'] == i]
-        if k=='Properties':
-            multi_DB[i]['secc']=multi_DB[i][k]['secc'].tolist()[0]
-            multi_DB[i]['unid']=multi_DB[i][k]['unid'].tolist()[0]
-            multi_DB[i]['norm']=multi_DB[i][k]['norm'].tolist()[0]
-            multi_DB[i]['coef_horm']=multi_DB[i][k]['coef_horm'].tolist()[0]
-            multi_DB[i]['coef_arma']=multi_DB[i][k]['coef_arma'].tolist()[0]
-            multi_DB[i]['coef_pret']=multi_DB[i][k]['coef_pret'].tolist()[0]
-            multi_DB[i]['horm']=multi_DB[i][k]['horm'].tolist()[0]
-            multi_DB[i]['arma']=multi_DB[i][k]['arma'].tolist()[0]
-            
-        elif k=="Geometries":
-            multi_DB[i]['punt_contorno']=multi_DB[i][k].iloc[:,1:10].dropna(axis=1).to_dict('record')
-            
-        elif k=="hp":
-            multi_DB[i]['contorno_Poligonal']=multi_DB[i][k].iloc[:,1:11].dropna(axis=1).to_dict('records')
-            
-        elif k=="hc":
-            multi_DB[i]['hc']=multi_DB[i][k].iloc[:,1:3].to_dict('record')
-            
-        elif k=="Caracteristicas":
-            multi_DB[i]['punt_armadura']=multi_DB[i][k].iloc[:,1:10].to_dict('record')
-            
-        elif k=="LC":
-            multi_DB[i]['LC']=multi_DB[i][k].iloc[:,1:5].to_dict('record')
-            
-           
-import CARSEC as CS
-
-#CS.CARSEC_Writer(DB=multi_DB['A'], name="CS_Multi")
-            
-def multi_CARSEC_Writer(multi_DB):
-    for i_d in multi_DB:
-        
-        CS.CARSEC_Writer(multi_DB[i_d], name='CS_Multi_'+str(i_d))
-    
-    
-multi_CARSEC_Writer(multi_DB)
-        
-          
+with open("Input_files\CARSEC_excel.xlsx", "rb") as fp:
+	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
 	
+st.subheader('Upload Excel input')
+
+
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+	st.write('Data preview')
+	_tables=pd.read_excel(uploaded_file,sheet_name=None)
+	for k in _tables:  
+		st.write(_tables[k])
+
+
+st.subheader('Download CARSEC files')
+
+path='Output_files\Multi_CARSEC'
+if os.path.exists(path):
+	dirs = os.listdir(path)
+	for file in dirs:
+		os.remove(path+'\\'+file)
+		
+
+if uploaded_file is not None:
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='Output_files\Multi_CARSEC\CS_Multi_')
+
+
+dirs = os.listdir(path)
+with ZipFile('Output_files\CARSEC_multi.zip', 'w') as zipObj:
+	# Add multiple files to the zip
+	for file in dirs:
+		st.write(file)
+		zipObj.write('Output_files\Multi_CARSEC'+'\\'+file)
+	
+with open('Output_files\CARSEC_multi.zip', "rb") as fp:
+	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
