@@ -22,7 +22,7 @@ with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
 	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
 #%%%%%%%%%%%%%%%%%%%	
 st.subheader('Upload your own Excel file')
-st.markdown("Once you have a prepared excel file, please drop your file here and click the download button to get multiple file.txt")
+st.markdown("Once the excel file is prepared, please drop your file here and click the download button to get multiple file.txt")
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
 	st.write('Data preview')
