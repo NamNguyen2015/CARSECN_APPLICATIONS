@@ -66,7 +66,7 @@ for k in list_tables:
 	
 	
 	# always check if the key exist in session state: 
-	#if df not in st.session_state:	
+	if df not in st.session_state:	
 		st.write(k)
 		st.dataframe(df)
 		
