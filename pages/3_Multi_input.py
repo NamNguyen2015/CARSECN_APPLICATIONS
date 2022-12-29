@@ -11,7 +11,7 @@ import json
 import pandas as pd
 import os
 from collections import defaultdict
-from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
+from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 #%%# Create a None Database
 
@@ -69,7 +69,8 @@ for k in list_tables:
 		st.write(k)	
 		st.session_state.df=pd.DataFrame(df, columns=df.columns)
 		#st.dataframe(df)
-		st.AgGrid(df)
+		AgGrid(df)
+	
 		
 		# Add a clear button to clear the table data
 		if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
