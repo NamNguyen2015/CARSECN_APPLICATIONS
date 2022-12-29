@@ -67,7 +67,7 @@ for k in list_tables:
 	# always check if the key exist in session state: 
 	if data not in st.session_state:	
 		st.write(k)	
-		#st.session_state.df=pd.DataFrame(data, columns=data.columns)
+		st.session_state.data=pd.DataFrame(data, columns=data.columns)
 		#st.dataframe(df)
 		AgGrid(data)
 		gb = GridOptionsBuilder.from_dataframe(data)
