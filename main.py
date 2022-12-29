@@ -37,7 +37,7 @@ with open(temp_path, 'w') as f:
     f.write(html)
 
 # Open the HTML file in the default web browser
-webbrowser.get('chrome').open(temp_path)
+webbrowser.open(temp_path)
 
 
 
