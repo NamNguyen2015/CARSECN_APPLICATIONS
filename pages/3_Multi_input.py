@@ -62,22 +62,19 @@ list_tables=list(input_DB.keys())
 # Create the interactive tables
 
 for k in list_tables: 
-	df=input_DB[k]
+	_df=input_DB[k]
 	
 	
 	# always check if the key exist in session state: 
 	if df not in st.session_state:	
 		st.write(k)
 		#st.dataframe(df)
-		st.table(df)
+		st.session_state.df=pd.DataFrame(_df, columns=_df.columns )
 		
 	# Add a clear button to clear the table data
-	st.button('Clear Table ', key='unique_button_key' +str(k), df.drop(df.index, inplace=True))
-		
-		
-		#if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
-			 # update dataframe state
-			#st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
+	if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
+		 # update dataframe state
+		st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
 						   
 			
 			
