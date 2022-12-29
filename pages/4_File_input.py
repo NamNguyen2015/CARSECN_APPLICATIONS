@@ -17,7 +17,7 @@ import tempfile
 
 #%%%%%%%%%%%%%%%%%%
 st.subheader('Download Excel Template input')
-st.markdown("Please download this file as a template structural and free to modify your own parameter.")
+st.markdown("Please download this file as a template excel and free to modify your own parameter.")
 with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
 	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
 #%%%%%%%%%%%%%%%%%%%	
