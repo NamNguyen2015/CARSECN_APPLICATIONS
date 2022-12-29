@@ -63,7 +63,6 @@ list_tables=list(input_DB.keys())
 
 for k in list_tables: 
 	df=input_DB[k]
-	df=df.loc[len(df)]
 	st.table(df)
 
 	
