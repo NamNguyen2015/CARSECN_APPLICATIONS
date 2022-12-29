@@ -63,11 +63,13 @@ list_tables=list(input_DB.keys())
 
 for k in list_tables: 
 	df=input_DB[k]
+	st.write(k)
+	st.table(df, row_headers=False)
 	
 	# always check if the key exist in session state: 
-	if df not in st.session_state:	
-		st.write(k)
-		st.table(df, row_headers=False)
+	#if df not in st.session_state:	
+		#st.write(k)
+		#st.table(df, row_headers=False)
 		
 		#if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
 			 # update dataframe state
