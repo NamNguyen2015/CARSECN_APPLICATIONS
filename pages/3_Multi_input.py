@@ -67,7 +67,7 @@ for k in list_tables:
 	# always check if the key exist in session state: 
 	if df not in st.session_state:	
 		st.write(k)
-		st.table(df, editable=True)
+		st.dataframe(df, editable=True)
 		
 		#if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
 			 # update dataframe state
