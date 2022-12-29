@@ -69,7 +69,7 @@ for k in list_tables:
 		st.write(k)	
 		#st.session_state.df=pd.DataFrame(data, columns=data.columns)
 		#st.dataframe(df)
-		AgGrid(df)
+		AgGrid(data)
 		gb = GridOptionsBuilder.from_dataframe(data)
 		gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
 		gb.configure_side_bar() #Add a sidebar
