@@ -10,23 +10,36 @@ import streamlit as st
 import webbrowser
 import base64
 
+# Read the PDF file
+with open('file.pdf', 'rb') as f:
+    pdf = f.read()
 
-st.write("***THIS IS THE MAIN PAGE***")
-st.markdown("It is recommended to open this page in Firefox. Otherwise, if you use other webbrowser please click the following link to preview PDF.")
-st.markdown("**Preview PDF:** [Manual CARSECN](https://github.com/NamNguyen2015/CARSECN_APPLICATIONS/blob/main/Input_files/carsecn.pdf)")
+# Write the PDF contents to a temporary HTML file
+html = f"""
+<html>
+<head>
+</head>
+<body>
+<embed src="data:application/pdf;base64,{pdf.encode('base64')}" type="application/pdf" />
+</body>
+</html>
+"""
+
+# Save the HTML file to a temporary location
+temp_path = '/tmp/temp.html'
+with open(temp_path, 'w') as f:
+    f.write(html)
+
+# Open the HTML file in the default web browser
+webbrowser.open(temp_path)
 
 
 
-def show_pdf(file_path):
-    with open(file_path,"rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
 
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="1000" height="1000" type="application/pdf"></iframe>'
-    
-    st.markdown(pdf_display, unsafe_allow_html=True)
-    
-    st.write("The original pdf")
-    
-    
-show_pdf("Input_files/carsecn.pdf")
+
+
+
+
+
+
 
