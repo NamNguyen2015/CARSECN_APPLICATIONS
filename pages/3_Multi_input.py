@@ -65,7 +65,7 @@ for k in list_tables:
 	df=input_DB[k]
 	
 	# always check if the key exist in session state: 
-	if 'df' not in st.session_state:	
+	if df not in st.session_state:	
 		st.write(k)
 		st.table(df)
 		
