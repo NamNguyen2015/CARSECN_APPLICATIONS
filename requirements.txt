@@ -8,4 +8,4 @@ pip
 pillow
 streamlit-aggrid
 pypdf2
-webbrowser
+
