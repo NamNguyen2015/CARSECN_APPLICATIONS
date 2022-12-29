@@ -47,7 +47,7 @@ st.write("***LC:*** Load Case")
 
 
 input_DB = pd.read_excel(
-    r'Input_files/CARSEC_excel.xlsx',
+    r'/app/carsecn_applications/Input_files/CARSEC_excel.xlsx',
     sheet_name=None, header=0, index_col=None)
 
 
