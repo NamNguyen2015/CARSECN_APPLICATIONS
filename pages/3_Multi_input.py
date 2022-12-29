@@ -68,7 +68,7 @@ for k in list_tables:
 	# always check if the key exist in session state: 
 	if df not in st.session_state:	
 		st.write(k)
-		#st.dataframe(df)
+		st.dataframe(df)
 		st.session_state.df=pd.DataFrame(df, columns=df.columns )
 		
 	# Add a clear button to clear the table data
