@@ -11,7 +11,7 @@ import webbrowser
 import base64
 
 # Read the PDF file
-with open('file.pdf', 'rb') as f:
+with open('Input_files/carsecn.pdf', 'rb') as f:
     pdf = f.read()
 
 # Write the PDF contents to a temporary HTML file
@@ -31,7 +31,7 @@ with open(temp_path, 'w') as f:
     f.write(html)
 
 # Open the HTML file in the default web browser
-webbrowser.open(temp_path)
+webbrowser.get('chrome').open(temp_path)
 
 
 
