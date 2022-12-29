@@ -62,20 +62,42 @@ list_tables=list(input_DB.keys())
 # Create the interactive tables
 
 for k in list_tables: 
-	df=input_DB[k]
+	data=input_DB[k]
 	
 	# always check if the key exist in session state: 
-	if df not in st.session_state:	
+	if data not in st.session_state:	
 		st.write(k)	
-		st.session_state.df=pd.DataFrame(df, columns=df.columns)
+		#st.session_state.df=pd.DataFrame(data, columns=data.columns)
 		#st.dataframe(df)
 		AgGrid(df)
+		gb = GridOptionsBuilder.from_dataframe(data)
+		gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
+		gb.configure_side_bar() #Add a sidebar
+		gb.configure_selection('multiple', use_checkbox=True, groupSelectsChildren="Group checkbox select children") #Enable multi-row selection
+		gridOptions = gb.build()
+
+		grid_response = AgGrid(
+		    data,
+		    gridOptions=gridOptions,
+		    data_return_mode='AS_INPUT', 
+		    update_mode='MODEL_CHANGED', 
+		    fit_columns_on_grid_load=False,
+		    theme='blue', #Add theme color to the table
+		    enable_enterprise_modules=True,
+		    height=350, 
+		    width='100%',
+		    reload_data=True
+		)
+
+		data = grid_response['data']
+		selected = grid_response['selected_rows'] 
+		df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
 	
 		
 		# Add a clear button to clear the table data
-		if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
+		#if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
 			 # update dataframe state
-			st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
+			#st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
 						   
 			
 			
