@@ -13,7 +13,7 @@ import base64
 
 st.write("***THIS IS THE MAIN PAGE***")
 st.markdown("It is recommended to open this page in Firefox. Otherwise, if you use other webbrowser please click the following link to preview")
-st.markdown("**Preview PDF:** [Manual CARSECN]()")
+st.markdown("**Preview PDF:** [Manual CARSECN](https://github.com/NamNguyen2015/CARSECN_APPLICATIONS/blob/main/Input_files/carsecn.pdf)")
 
 
 
