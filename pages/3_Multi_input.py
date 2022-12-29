@@ -72,7 +72,7 @@ for k in list_tables:
 		st.table(df)
 		
 	# Add a clear button to clear the table data
-	st.button('Clear Table', df.drop(df.index, inplace=True))
+	st.button('Clear Table '+ str(k) , key='unique_button_key' +str(k), df.drop(df.index, inplace=True))
 		
 		
 		#if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
