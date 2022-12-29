@@ -62,8 +62,11 @@ list_tables=list(input_DB.keys())
 # Create the interactive tables
 
 for k in list_tables: 
-    df=input_DB[k]
-    st.table(df)
+	df=input_DB[k]
+	df.loc[len(df)] = ['new', 'row', 'values']
+	st.table(df)
+
+	
     
     
     
