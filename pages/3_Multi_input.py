@@ -69,7 +69,7 @@ for k in list_tables:
 	if df not in st.session_state:	
 		st.write(k)
 		#st.dataframe(df)
-		st.dataframe(df, editable=True, clear_button=True, add_row_button=True)
+		st.table(df, editable=True)
 		
 		
 		#if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
