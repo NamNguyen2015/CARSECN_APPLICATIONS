@@ -8,6 +8,7 @@ Created on Tue Dec 13 10:16:07 2022
 
 import streamlit as st
 import webbrowser
+import base64
 
 def show_pdf(file_path):
     with open(file_path,"rb") as f:
