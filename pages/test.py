@@ -33,27 +33,27 @@ if uploaded_file is not None:
 #%%%%%%%%%%%%%%%%%%%
 st.subheader('Download Muti CARSEC files')
 
-# if uploaded_file is not None:
-# 	multi_name_file = tempfile.gettempdir()
-# 	#CS.CARSEC_Writer(DB=DB, export_path=name_file)
-# 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=multi_name_file+'/CS_Multi_')	
+path='/app/carsecn_applications/Output_files/Multi_CARSEC'
+if os.path.exists(path):
+	dirs = os.listdir(path)
+	for file in dirs:
+		os.remove(path+'/'+file)
+		
 
-
-# Create a temporary directory
-temp_dir = tempfile.TemporaryDirectory()
-
-# Print the path to the temporary directory
-print(temp_dir.name)
-
-# Write some files to the temporary directory
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=temp_dir.name)	
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
+
+
+dirs = os.listdir(path)
+with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
+	# Add multiple files to the zip
+	for file in dirs:
+		st.write(file)
+		zipObj.write('Output_files/Multi_CARSEC'+'/'+file)
+	
+with open('CARSEC_multi.zip', "rb") as fp:
+	btn = st.download_button(label='Download CARSEC files',data=fp,file_name="CARSEC_multi.zip",mime="application/ZIP")
 
 
 
-# Zip the temporary directory
-import shutil
-shutil.make_archive(temp_dir.name, 'zip', temp_dir.name)
 
-zip_path = f"{temp_dir.name}.zip"
-st.download_button("Download zip file", zip_path)
