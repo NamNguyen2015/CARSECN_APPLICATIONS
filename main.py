@@ -24,11 +24,16 @@ def show_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
     
     st.write("The original pdf")
-    
- 
 
-#
-#show_pdf("Input_files/carsecn.pdf")
+show_pdf("Input_files/carsecn.pdf")
+
+
+
+
+
+
+
+
 # Read the PDF file
 #with open('Input_files/carsecn.pdf', 'rb') as f:
  #   pdf = f.read()
