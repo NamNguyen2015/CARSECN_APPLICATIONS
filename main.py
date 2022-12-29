@@ -15,14 +15,12 @@ st.write("***THIS IS THE MAIN PAGE***")
 import PyPDF2
 
 # Read the PDF file
-with open("Input_files/carsecn.pdf", "rb") as f:
-    reader = PyPDF2.PdfFileReader(f)
-    # Convert the PDF to a string of HTML
-    html = reader.getPage(0).extractText()
+with open('Input_files/carsecn.pdf', 'rb') as f:
+    pdf = PyPDF2.PdfFileReader(f)
 
-# Use st.write to display the HTML
-st.write(html, unsafe_allow_html=True)
-
+# Display the PDF contents
+for page in pdf.pages:
+    st.write(page.extractText())
 
 #def show_pdf(file_path):
 #    with open(file_path,"rb") as f:
