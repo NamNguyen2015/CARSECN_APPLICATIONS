@@ -64,7 +64,10 @@ list_tables=list(input_DB.keys())
 for k in list_tables: 
 	df=input_DB[k]
 	st.write(k)
-	st.write(df.loc[len(df)] )
+	# Add new row to DataFrame
+	new_row = [5, "John", "Doe", 25]
+	df = df.append(new_row, ignore_index=True)
+	
 	st.table(df)
 
 	
