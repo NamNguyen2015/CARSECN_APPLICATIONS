@@ -20,7 +20,7 @@ def show_pdf(file_path):
 
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="1000" height="1000" type="application/pdf"></iframe>'
     
-    st.markdown(pdf_display, unsafe_allow_html=False)
+    st.markdown(pdf_display, unsafe_allow_html=True)
     
     #st.write("The original pdf")
     
