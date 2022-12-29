@@ -65,7 +65,7 @@ for k in list_tables:
 	df=input_DB[k]
 	st.write(k)
 	# Add new row to DataFrame
-	new_row = ['hola']
+	new_row = ['']
 	df = df.append(new_row, ignore_index=True)
 	
 	st.table(df)
