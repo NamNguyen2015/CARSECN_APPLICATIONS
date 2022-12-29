@@ -17,10 +17,12 @@ import tempfile
 
 #%%%%%%%%%%%%%%%%%%
 st.subheader('Download Excel Template input')
+st.markdown("Please download this file as a template structural and free to modify your own parameter.")
 with open("Input_files/CARSEC_excel.xlsx", "rb") as fp:
 	btn = st.download_button(label="Download Excel Template",data=fp,file_name="CARSEC_Excel_Input.xlsx",mime="application/xlsx")
 #%%%%%%%%%%%%%%%%%%%	
 st.subheader('Upload your own Excel file')
+st.markdown("Once you have a prepared excel file, please drop your file here and click the download button to get multiple file.txt")
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
 	st.write('Data preview')
