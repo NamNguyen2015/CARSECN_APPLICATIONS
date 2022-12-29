@@ -69,10 +69,14 @@ for k in list_tables:
 		st.write(k)
 		st.table(df)
 		
-	#if st.button("Clear table"):
+	if st.button("Clear table"):
 		 # update dataframe state
-	#	st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
-						   #['ID','secc','unid','norm','coef_horm','coef_arma','coef_pret','horm','arma'])
+		st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
+						   
+			
+			
+			
+			#['ID','secc','unid','norm','coef_horm','coef_arma','coef_pret','horm','arma'])
 
 		
 	
