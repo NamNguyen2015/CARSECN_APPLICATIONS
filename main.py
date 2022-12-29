@@ -17,13 +17,16 @@ with open('Input_files/carsecn.pdf', 'rb') as f:
 # Encode the PDF file as a base64 string
 base64_pdf = base64.b64encode(pdf).decode('utf-8')
 
+# Encode the PDF file as a base64 string
+base64_pdf = base64.b64encode(pdf).decode('utf-8')
+
 # Write the PDF contents to a temporary HTML file
 html = f"""
 <html>
 <head>
 </head>
 <body>
-<embed src="data:application/pdf;base64,{pdf.encode('base64')}" type="application/pdf" />
+<embed src="data:application/pdf;base64,{base64_pdf}" type="application/pdf" />
 </body>
 </html>
 """
@@ -34,8 +37,7 @@ with open(temp_path, 'w') as f:
     f.write(html)
 
 # Open the HTML file in the default web browser
-webbrowser.get('chrome').open(temp_path)
-
+webbrowser.open(temp_path)
 
 
 
