@@ -71,7 +71,7 @@ for k in list_tables:
 		
 	if st.button("Clear table"):
 		 # update dataframe state
-		st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
+		st.session_state.df_new = pd.DataFrame('',index=range(len(df)), columns=df.columns)
 						   
 			
 			
