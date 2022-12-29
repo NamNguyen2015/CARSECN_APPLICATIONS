@@ -63,37 +63,13 @@ list_tables=list(input_DB.keys())
 
 for k in list_tables: 
 	df=input_DB[k]
-	st.write(k)
-	# Add new row to DataFrame
-	new_row = ['']
-	df = df.append(new_row, ignore_index=True)
 	
-	st.table(df)
-
-	
+	# always check if the key exist in session state: 
+	if 'df' not in st.session_state:	
+		st.write(k)
+		st.table(df)
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- # always check if the key exist in session state:
+ 
 
 #if 'df_Properties' not in st.session_state:
 #	_df = {'ID': ['A', 'B'], 'secc','unid','norm','coef_horm','coef_arma','coef_pret','horm','arma'}
