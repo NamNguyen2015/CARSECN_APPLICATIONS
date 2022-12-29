@@ -13,6 +13,9 @@ import base64
 # Read the PDF file
 with open('Input_files/carsecn.pdf', 'rb') as f:
     pdf = f.read()
+    
+# Encode the PDF file as a base64 string
+base64_pdf = base64.b64encode(pdf).decode('utf-8')
 
 # Write the PDF contents to a temporary HTML file
 html = f"""
