@@ -31,7 +31,7 @@ def show_pdf(file_path):
         f.write(html)
 
     # Open the HTML file in Google Chrome
-    webbrowser.get('chrome').open(temp_path)
+    webbrowser.get('firefox').open(temp_path)
 
 
 
