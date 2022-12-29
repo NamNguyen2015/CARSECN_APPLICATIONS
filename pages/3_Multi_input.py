@@ -69,7 +69,7 @@ for k in list_tables:
 		st.write(k)
 		st.table(df)
 		
-	if st.button("Clear table", key='unique_button_key'+str(k)):
+	if st.button("Clear table"+str(k), key='unique_button_key'+str(k)):
 		 # update dataframe state
 		st.session_state.df = pd.DataFrame('',index=range(len(df)), columns=df.columns)
 						   
