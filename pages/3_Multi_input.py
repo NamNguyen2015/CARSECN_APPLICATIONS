@@ -64,12 +64,11 @@ list_tables=list(input_DB.keys())
 for k in list_tables: 
 	df=input_DB[k]
 	
-	
 	# always check if the key exist in session state: 
 	if df not in st.session_state:	
-		st.write(k)
+		st.write(k)	
+		st.session_state.df=pd.DataFrame(df, columns=df.columns, editable=True )
 		st.dataframe(df)
-		st.session_state.df=pd.DataFrame(df, columns=df.columns )
 		
 	# Add a clear button to clear the table data
 	if st.button("Clear table - "+str(k), key='unique_button_key' +str(k)):
