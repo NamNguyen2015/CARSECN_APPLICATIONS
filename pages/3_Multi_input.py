@@ -53,10 +53,10 @@ input_DB = pd.read_excel(
 
 #Show all tables in excel
 list_tables=list(input_DB.keys())
-st.markdown("Data's Preview")
-for k in list_tables:  
-    st.write(k)
-    st.write(input_DB[k].head(10))
+#st.markdown("Data's Preview")
+#for k in list_tables:  
+ #   st.write(k)
+  #  st.write(input_DB[k].head(10))
     
     
 # Create the interactive tables
