@@ -12,19 +12,29 @@ import base64
 
 st.write("***THIS IS THE MAIN PAGE***")
 
+import PyPDF2
+
+# Read the PDF file
+with open("Input_files/carsecn.pdf", "rb") as f:
+    reader = PyPDF2.PdfFileReader(f)
+    # Convert the PDF to a string of HTML
+    html = reader.getPage(0).extractText()
+
+# Use st.write to display the HTML
+st.write(html, unsafe_allow_html=True)
 
 
-def show_pdf(file_path):
-    with open(file_path,"rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+#def show_pdf(file_path):
+#    with open(file_path,"rb") as f:
+#        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
 
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="1000" height="1000" type="application/pdf"></iframe>'
+ #   pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="1000" height="1000" type="application/pdf"></iframe>'
     
-    st.markdown(pdf_display, unsafe_allow_html=True)
-    
-    
-st.write("The original pdf")
+  #  st.markdown(pdf_display, unsafe_allow_html=True)
     
     
-show_pdf("Input_files/carsecn.pdf")
+#st.write("The original pdf")
+    
+    
+#show_pdf("Input_files/carsecn.pdf")
 
