@@ -18,6 +18,7 @@ import tempfile
 
 
 st.subheader("Single Input")
+st.markdown("**We create this page with manual introductions for all input parameters. It also allows user click and download the template as an example.**")
 
 DB = {}
 #**********************************
