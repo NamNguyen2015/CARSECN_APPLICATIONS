@@ -149,8 +149,8 @@ df_hp['Punto_3']=[3]
 df_hp['Punto_4']=[4]
 df_hp['Punto_5']=None
 df_hp['Punto_6']=None
-df_hp['Punto_7']=None
-df_hp['Punto_8']=None
+df_hp['Punto_7']=NaN
+df_hp['Punto_8']=NaN
 st.markdown('**Contorno Poligonal**')
 response = AgGrid(df_hp, editable=True, fit_columns_on_grid_load=True)
 
