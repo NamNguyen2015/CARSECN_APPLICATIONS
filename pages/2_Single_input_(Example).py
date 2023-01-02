@@ -145,7 +145,7 @@ st.markdown('**Contorno Poligonal**')
 
 collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 
-numbers = st.text_input("Please enter numbers")
+numbers = st.text_input("Please enter a list of contorno poligonal:")
 #st.write(collect_numbers(numbers))
 
 DB['contorno_Poligonal']= collect_numbers(numbers)
