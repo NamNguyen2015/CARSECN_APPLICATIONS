@@ -140,9 +140,6 @@ st.write("\n")
 st.write("-***“hp”*** puntos que definen el contorno poligonal")
 st.markdown('**Contorno Poligonal**')
 
-list_punto=[]
-punto  = st.text_input("Please enter punto")
-list_punto=list_punto.append(punto)
 
 #squares = list(map(lambda x: x**2, numbers))
 
@@ -152,7 +149,7 @@ numbers = st.text_input("Please enter numbers")
 #st.write(collect_numbers(numbers))
 
 DB['contorno_Poligonal']= collect_numbers(numbers)
-st.write(DB['contorno_Poligonal'])
+#st.write(DB['contorno_Poligonal'])
 
 
 
