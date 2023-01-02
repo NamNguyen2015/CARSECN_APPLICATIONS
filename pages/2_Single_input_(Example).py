@@ -145,7 +145,7 @@ numbers = st.text_input("PLease enter numbers")
 st.write(collect_numbers(numbers))
 
 DB['contorno_Poligonal']= collect_numbers
-#st.write(DB['contorno_Poligonal'])
+st.write(DB['contorno_Poligonal'])
 
 
 
