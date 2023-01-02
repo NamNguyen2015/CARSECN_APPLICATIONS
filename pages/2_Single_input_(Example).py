@@ -139,12 +139,42 @@ DB['horm'] = st.text_input('"horm"', 3500)
 st.write("\n")
 st.write("-***“hp”*** puntos que definen el contorno poligonal")
 st.markdown('**Contorno Poligonal**')
-collect_numbers = lambda x : {'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != ""}
+collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != ""}]
 
-numbers = st.text_input("PLease enter numbers")
+numbers = st.text_input("Please enter numbers")
 st.write(collect_numbers(numbers))
 
 DB['contorno_Poligonal']= collect_numbers
+st.write(DB['contorno_Poligonal'])
+
+
+
+
+
+
+
+
+
+df_hp = pd.DataFrame(
+    '',
+    index=range(1),
+    columns=['Punto_1', 'Punto_2', 'Punto_3', 'Punto_4','Punto_5','Punto_6','Punto_7','Punto_8','Punto_9','Punto_10']
+)
+df_hp['Punto_1']=[1]
+df_hp['Punto_2']=[2]
+df_hp['Punto_3']=[3]
+df_hp['Punto_4']=[4]
+df_hp['Punto_5']=['']
+df_hp['Punto_6']=['']
+df_hp['Punto_7']=['']
+df_hp['Punto_8']=['']
+df_hp['Punto_9']=['']
+df_hp['Punto_10']=['']
+
+st.markdown('**Contorno Poligonal**')
+response = AgGrid(df_hp, editable=True, fit_columns_on_grid_load=True)
+
+DB['contorno_Poligonal']= response['data'].to_dict('records')
 st.write(DB['contorno_Poligonal'])
 
 
