@@ -174,7 +174,7 @@ st.markdown('**Contorno Poligonal**')
 response = AgGrid(df_hp, editable=True, fit_columns_on_grid_load=True)
 
 DB['contorno_Poligonal']= response['data'].to_dict('records')
-
+st.write(DB['contorno_Poligonal'])
 
 
 # *************************
