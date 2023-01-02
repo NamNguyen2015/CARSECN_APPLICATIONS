@@ -144,7 +144,7 @@ collect_numbers = lambda x : [{str(int(i)):int(i) for i in re.split("[^0-9]", x)
 numbers = st.text_input("Please enter numbers")
 st.write(collect_numbers(numbers))
 
-DB['contorno_Poligonal']= collect_numbers.to_dict('records')
+DB['contorno_Poligonal']= collect_numbers('records')
 st.write(DB['contorno_Poligonal'])
 
 
