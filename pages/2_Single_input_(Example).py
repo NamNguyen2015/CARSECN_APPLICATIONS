@@ -141,7 +141,7 @@ st.write("-***“hp”*** puntos que definen el contorno poligonal")
 st.markdown('**Contorno Poligonal**')
 
 collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
-numbers = st.text_input("Enter la lista de los puntos:")
+numbers = st.text_input("Enter la lista de los puntos (se separan por coma ','):")
 DB['contorno_Poligonal']= collect_numbers(numbers)
 #st.write(DB['contorno_Poligonal'])
 
