@@ -151,7 +151,7 @@ def Convert(lst):
 #st.write(Convert(collect_numbers))
 
 
-DB['contorno_Poligonal']= collect_numbers
+#DB['contorno_Poligonal']= collect_numbers
 
 
 
@@ -196,6 +196,8 @@ df_hc['Radio']=0.30
 st.markdown('**hc**')
 response = AgGrid(df_hc, editable=True, fit_columns_on_grid_load=True)
 DB['hc']= response['data'].to_dict('records')
+
+st.write(DB['hc'])
 
 # *************************
 
