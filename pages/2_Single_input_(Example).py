@@ -139,12 +139,19 @@ DB['horm'] = st.text_input('"horm"', 3500)
 st.write("\n")
 st.write("-***“hp”*** puntos que definen el contorno poligonal")
 
-collect_numbers = lambda x : {int(i) for i in re.split("[^0-9]", x) if i != ""}
+collect_numbers = lambda x : [int(i) for i in re.split("[^0-9]", x) if i != ""]
 
 numbers = st.text_input("PLease enter numbers")
 st.write(collect_numbers(numbers))
 
-DB['contorno_Poligonal']= collect_numbers
+def Convert(lst):
+    res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
+    return res_dct
+
+st.write(Convert(collect_numbers))
+
+
+#DB['contorno_Poligonal']= collect_numbers
 
 
 
