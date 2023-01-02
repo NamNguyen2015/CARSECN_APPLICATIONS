@@ -142,11 +142,11 @@ st.markdown('**Contorno Poligonal**')
 
 list_punto=[]
 punto  = st.text_input("Please enter punto")
-#list_punto=list_punto.append(punto)
+list_punto=list_punto.append(punto)
 
 #squares = list(map(lambda x: x**2, numbers))
 
-collect_numbers = lambda x : [{'Punto_'+str(int(punto)):int(i) for i in re.split("[^0-9]", x) if i != ""}]
+collect_numbers = lambda x : [{'Punto_'+str(int(k))for k in list_punto:int(i) for i in re.split("[^0-9]", x) if i != "" }]
 
 numbers = st.text_input("Please enter numbers")
 #st.write(collect_numbers(numbers))
