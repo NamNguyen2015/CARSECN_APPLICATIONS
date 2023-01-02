@@ -139,12 +139,12 @@ DB['horm'] = st.text_input('"horm"', 3500)
 st.write("\n")
 st.write("-***“hp”*** puntos que definen el contorno poligonal")
 st.markdown('**Contorno Poligonal**')
-collect_numbers = lambda x : [{str(int(j))for j in re.split("[^0-9]"):int(i) for i in re.split("[^0-9]", x) if i != ""}]
+collect_numbers = lambda x : [{str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != ""}]
 
 numbers = st.text_input("Please enter numbers")
 st.write(collect_numbers(numbers))
 
-DB['contorno_Poligonal']= collect_numbers
+DB['contorno_Poligonal']= collect_numbers.to_dict('records')
 st.write(DB['contorno_Poligonal'])
 
 
