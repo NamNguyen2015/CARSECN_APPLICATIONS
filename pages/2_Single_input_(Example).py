@@ -146,7 +146,7 @@ list_punto=list_punto.append(punto)
 
 #squares = list(map(lambda x: x**2, numbers))
 
-collect_numbers = lambda x : [{'Punto_'+str(int(k)):int(i) for k,i in zip(list_punto,re.split("[^0-9]", x)) if i != "" }]
+collect_numbers = lambda x : [{'Punto_'+str(int(k)):int(i) for k,i in zip(list_punto,re.split("[^0-9]"), x) if i != "" }]
 
 numbers = st.text_input("Please enter numbers")
 #st.write(collect_numbers(numbers))
