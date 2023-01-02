@@ -151,7 +151,7 @@ def Convert(lst):
 #st.write(Convert(collect_numbers))
 
 
-#DB['contorno_Poligonal']= collect_numbers
+DB['contorno_Poligonal']= collect_numbers
 
 
 
