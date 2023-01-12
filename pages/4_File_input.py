@@ -45,7 +45,7 @@ path1=os.getcwd()
 
 st.write(path1)
 
-path2=os.path.join(path1,'Output_files/Multi_CARSEC')
+path2=os.path.join(path1,os.path.join('Output_files','Multi_CARSEC')
 
 st.write(path2)
 		
