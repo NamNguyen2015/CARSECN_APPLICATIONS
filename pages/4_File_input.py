@@ -45,15 +45,16 @@ path1=os.getcwd()
 
 st.write(path1)
 
-path2=os.path.join(path1,'Output_files/Multi_CARSEC'))
+#path2=os.path.join(path1,'Output_files/Multi_CARSEC'))
 		
 
 if uploaded_file is not None:
-	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path2,CS_Multi_))
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
+	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path2,CS_Multi_))
 
 
 dirs = os.listdir(path)
+st.write(dirs)
 with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
 	for file in dirs:
