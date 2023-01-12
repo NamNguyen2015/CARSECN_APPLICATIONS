@@ -34,12 +34,12 @@ st.subheader('Download Muti CARSEC files')
 
 #=============================================================================
 #path='/app/carsecn_applications/Output_files/Multi_CARSEC'
-if os.path.exists(path):
-	dirs = os.listdir(path)
-	for file in dirs:
-		os.remove(path+'/'+file)
+#if os.path.exists(path):
+#	dirs = os.listdir(path)
+#	for file in dirs:
+#		os.remove(path+'/'+file)
 		
-st.write(path)
+#st.write(path)
 
 path1=os.getcwd()
 
