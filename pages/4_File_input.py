@@ -44,10 +44,13 @@ st.write(path)
 path1=os.getcwd()
 
 st.write(path1)
+
+path2=os.path.join(path1,(os.path.join(Output_files,Multi_CARSEC)))
 		
 
 if uploaded_file is not None:
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
+	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path2,CS_Multi_))
 
 
 dirs = os.listdir(path)
