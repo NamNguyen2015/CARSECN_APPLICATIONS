@@ -39,6 +39,12 @@ if os.path.exists(path):
 	for file in dirs:
 		os.remove(path+'/'+file)
 		
+st.write(path)
+
+path1=os.getcwd()
+
+st.write(path1)
+		
 
 if uploaded_file is not None:
 	CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
