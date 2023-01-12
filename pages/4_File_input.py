@@ -34,22 +34,14 @@ st.subheader('Download Muti CARSEC files')
 
 #=============================================================================
 #path='/app/carsecn_applications/Output_files/Multi_CARSEC'
-#if os.path.exists(path):
-#	dirs = os.listdir(path)
-#	for file in dirs:
-#		os.remove(path+'/'+file)
-		
-#st.write(path)
+
 
 path1=os.getcwd()
-
-st.write(path1)
 
 path2=os.path.join(path1,'Output_files')
 
 path3=os.path.join(path2,'Multi_CARSEC')
 
-st.write(path3)
 
 path=path3
 if os.path.exists(path):
@@ -61,7 +53,7 @@ if os.path.exists(path):
 
 if uploaded_file is not None:
 	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path3,CS_Multi_))
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path,CS_Multi_))
 
 
 dirs = os.listdir(path)
@@ -69,9 +61,7 @@ st.write(dirs)
 with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
 	for file in dirs:
-		st.write(file)
 		path_file=os.path.join(path,file)
-		#zipObj.write('Output_files/Multi_CARSEC'+'/'+file)
 		zipObj.write(os.path.join(path_file))
 	
 with open('CARSEC_multi.zip', "rb") as fp:
