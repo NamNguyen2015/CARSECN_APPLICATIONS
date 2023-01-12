@@ -35,7 +35,6 @@ st.subheader('Download Muti CARSEC files')
 #=============================================================================
 #path='/app/carsecn_applications/Output_files/Multi_CARSEC'
 
-
 path1=os.getcwd()
 
 path2=os.path.join(path1,'Output_files')
@@ -57,7 +56,6 @@ if uploaded_file is not None:
 
 
 dirs = os.listdir(path)
-st.write(dirs)
 with ZipFile('CARSEC_multi.zip', 'w') as zipObj:
 	# Add multiple files to the zip
 	for file in dirs:
