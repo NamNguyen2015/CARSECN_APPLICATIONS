@@ -33,7 +33,7 @@ if uploaded_file is not None:
 st.subheader('Download Muti CARSEC files')
 
 #=============================================================================
-path='/app/carsecn_applications/Output_files/Multi_CARSEC'
+#path='/app/carsecn_applications/Output_files/Multi_CARSEC'
 if os.path.exists(path):
 	dirs = os.listdir(path)
 	for file in dirs:
@@ -50,6 +50,12 @@ path2=os.path.join(path1,'Output_files')
 path3=os.path.join(path2,'Multi_CARSEC')
 
 st.write(path3)
+
+path=path3
+if os.path.exists(path):
+	dirs = os.listdir(path)
+	for file in dirs:
+		os.remove(os.path.join(path,file))
 		
 
 if uploaded_file is not None:
