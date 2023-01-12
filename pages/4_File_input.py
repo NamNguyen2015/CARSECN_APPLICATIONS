@@ -47,7 +47,9 @@ st.write(path1)
 
 path2=os.path.join(path1,'Output_files')
 
-st.write(path2)
+path3=os.path.join(path2,'Multi_CARSEC')
+
+st.write(path3)
 		
 
 if uploaded_file is not None:
