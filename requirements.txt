@@ -7,3 +7,5 @@ Openpyxl
 pip
 pillow
 streamlit-aggrid
+pypdf2
+
