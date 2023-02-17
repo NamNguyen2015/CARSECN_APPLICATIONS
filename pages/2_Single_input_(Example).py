@@ -149,20 +149,35 @@ t_h = st.selectbox("Unidad de hormigon", options=["tm2", "kcm2", "mpa", "ksi","k
 DB['horm'] = st.text_input('"horm"', 3500)
 
 # *************************
-# Contorno Poligonal (hp)
+
 st.write("\n")
-st.write("-***“hp”*** puntos que definen el contorno poligonal")
-st.markdown('**Contorno Poligonal**')
+st.write("-***“contorno”*** puntos que definen el contorno")
+st.markdown('**Contorno**')
 
 collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 numbers = st.text_input("Enter la lista de los puntos:")
-DB['contorno_Poligonal']= collect_numbers(numbers)
+DB['contorno']= collect_numbers(numbers)
 #st.write(DB['contorno_Poligonal'])
 
 
 
 
-#***************************
+# *************************
+# hp
+st.write("\n")
+st.write("-***“hp”*** puntos que definen el contorno poligonal")
+st.markdown('**Contorno Poligonal**')
+st.write("-***“hc”*** puntos que define el centro del centro   radio del círculo")
+
+st.markdown('**hp**')
+collect_numbers_hp = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
+numbers_hp = st.text_input("Enter la lista de los puntos hp:")
+DB['hp']= 'hp'+' ' + collect_numbers_hp(numbers_hp)
+
+
+
+
+# *************************
 
 
 
