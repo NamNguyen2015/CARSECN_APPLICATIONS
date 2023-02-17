@@ -68,7 +68,7 @@ DB['coef_horm'] = st.number_input('"horm"', 1.5)
 DB['coef_arma'] = st.number_input('"arma"', 1.15)
 DB['coef_pret'] = st.number_input('"pret"', 1.15)
 
-DB['phi'] = st.selectbox('', options=['phi'])
+#DB['phi'] = st.selectbox('', options=['phi'])
 df_phi = pd.DataFrame(
     '',
     index=range(1),
