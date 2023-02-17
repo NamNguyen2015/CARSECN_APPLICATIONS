@@ -75,8 +75,8 @@ df_phi = pd.DataFrame(
     columns=['col1', 'col2', 'col3']
 )
 df_phi['col1']='phi'
-df_phi['col2']=0.75
-df_phi['col3']=0.90
+df_phi['col2']= ' '#0.75
+df_phi['col3']= ' '#0.90
 
 st.markdown('**phi**')
 response = AgGrid(df_phi, editable=True, fit_columns_on_grid_load=True)
