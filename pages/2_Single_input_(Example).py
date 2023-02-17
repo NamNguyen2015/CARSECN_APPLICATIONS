@@ -68,6 +68,20 @@ DB['coef_horm'] = st.number_input('"horm"', 1.5)
 DB['coef_arma'] = st.number_input('"arma"', 1.15)
 DB['coef_pret'] = st.number_input('"pret"', 1.15)
 
+DB['phi'] = st.selectbox('', options=['phi'])
+df_phi = pd.DataFrame(
+    '',
+    index=range(1),
+    columns=['col1', 'col2', 'col3']
+)
+df_phi['col1']='phi'
+df_phi['col2']=0.75
+df_phi['col3']=0.90
+
+st.markdown('**phi**')
+response = AgGrid(df_phi, editable=True, fit_columns_on_grid_load=True)
+DB['phi']= response['data'].to_dict('records')
+
 #*******************
 st.write("\n")
 st.write("-[***“phi”*** compr tracc]")
