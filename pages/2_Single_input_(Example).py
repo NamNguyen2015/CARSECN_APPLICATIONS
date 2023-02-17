@@ -172,7 +172,7 @@ st.write("-***“hc”*** puntos que define el centro del centro   radio del cí
 st.markdown('**hp**')
 collect_numbers_hp = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 numbers_hp = st.text_input("Enter la lista de los puntos hp:")
-DB['hp']= str('hp')+str(' ') + collect_numbers_hp(numbers_hp)
+DB['hp']= 'hp'+' ' + str(collect_numbers_hp(numbers_hp))
 
 
 
