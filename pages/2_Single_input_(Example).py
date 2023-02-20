@@ -73,7 +73,6 @@ DB['coef_pret'] = st.number_input('"pret"', 1.15)
 # *************************
 # phi
 st.write("\n")
-st.write("-***“phi”)
 DB['phi'] = st.selectbox('', options=['phi'])
 df_phi = pd.DataFrame(
     '',
