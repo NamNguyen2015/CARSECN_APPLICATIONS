@@ -35,6 +35,9 @@ import copy
 # DB['horm']=float
 # DB['contorno_Poligonal']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
 # DB['hc']=[0:{'Punto_Central':5,'Radio':0.3}]
+#********
+# DB['hp']=[0:{'Punto_Central':5,'Radio':0.3}]
+#********
 # DB['arma']=float
 # DB['punt_armadura']=[0:{'Punto_Inicial':6,'Punto_Final':7,'No_Armadura':10, 'Area':0.000314}]
 # DB['LC']=[0:{"Axil":-10, 'monento_X':5, 'monento_Y':2}]
@@ -55,11 +58,11 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         f.write('* Coeficientes de seguridad EHE o coeficientes phi AASHTO. No es obligatoria '+'\n')  
         f.write('coef horm '+str(DB['coef_horm'])+' arma '+str(DB['coef_arma']) + ' pret '+str(DB['coef_pret'])+  ' \n')
 	
-	#f.write('phi'+' \n') 
-        #for v in DB['phi'] :
-        #    for k in v.keys():           
-         #       f.write(str(v[k])+' ')
-         #   f.write('\n')
+	f.write('phi'+' \n') 
+        for v in DB['phi'] :
+   		for k in v.keys():           
+     			f.write(str(v[k])+' ')
+	  	f.write('\n')
             
 	
 	
