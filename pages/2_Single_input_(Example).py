@@ -70,20 +70,22 @@ DB['coef_pret'] = st.number_input('"pret"', 1.15)
 
 
 
-
-
-
-#DB['phi'] = st.selectbox('', options=['phi'])
+# *************************
+# phi
+st.write("\n")
+st.write("-***“phi”)
+DB['phi'] = st.selectbox('', options=['phi'])
 df_phi = pd.DataFrame(
     '',
     index=range(1),
-    columns=['col1', 'col2', 'col3']
+    columns=['Punto_Central', 'Radio']
 )
-df_phi['col1']=' '#0.95
-df_phi['col2']= ' '#0.75
+df_hc['Punto_Central']=[5]
+df_hc['Radio']=0.30
 st.markdown('**phi**')
 response = AgGrid(df_phi, editable=True, fit_columns_on_grid_load=True)
-DB['phi']= response['data'].to_dict('records')
+DB['hc']= response['data'].to_dict('records')
+#st.write(DB['phi'])
 
 #*******************
 st.write("\n")
