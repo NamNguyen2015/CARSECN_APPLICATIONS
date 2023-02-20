@@ -68,10 +68,33 @@ DB['coef_horm'] = st.number_input('"horm"', 1.5)
 DB['coef_arma'] = st.number_input('"arma"', 1.15)
 DB['coef_pret'] = st.number_input('"pret"', 1.15)
 
+
+# *************************
+# hc
+st.write("\n")
+st.write("-***“hc”*** puntos que define el centro del centro   radio del círculo")
+DB['hc'] = st.selectbox('', options=['hc'])
+df_hc = pd.DataFrame(
+    '',
+    index=range(1),
+    columns=['Punto_Central', 'Radio']
+)
+df_hc['Punto_Central']=[5]
+df_hc['Radio']=0.30
+st.markdown('**hc**')
+response = AgGrid(df_hc, editable=True, fit_columns_on_grid_load=True)
+DB['hc']= response['data'].to_dict('records')
+
+
+
+
+
+
+
 #DB['phi'] = st.selectbox('', options=['phi'])
 df_phi = pd.DataFrame(
     '',
-    index=range(1),
+    index=range(2),
     columns=['col1', 'col2', 'col3']
 )
 df_phi['col1']='phi'
