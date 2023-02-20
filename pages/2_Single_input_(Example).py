@@ -77,10 +77,12 @@ DB['phi'] = st.selectbox('', options=['phi'])
 df_phi = pd.DataFrame(
     '',
     index=range(1),
-    columns=['Punto_Central', 'Radio']
+    columns=['col1', 'col2','col3']
 )
-df_phi['Punto_Central']=[5]
-df_phi['Radio']=0.30
+df_phi['col1']='phi'
+df_phi['col2']=''
+df_phi['col3']=''
+
 st.markdown('**phi**')
 response = AgGrid(df_phi, editable=True, fit_columns_on_grid_load=True)
 DB['hc']= response['data'].to_dict('records')
