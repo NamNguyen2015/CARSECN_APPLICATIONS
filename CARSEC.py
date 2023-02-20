@@ -27,6 +27,9 @@ import copy
 # DB['coef_horm']= float
 # DB['coef_arma']= float
 # DB['coef_pret']= float
+#***************
+#DB['phi']= [0:{'phi':'phi','col1':'optional', 'col2':'optional'}]
+#***************
 
 # DB['punt_contorno']=[0:{'punt':1, 'X':0,'Y':0},'punt':2, 'X':2,'Y':0},...] # pandasDataFrame.to_dict('records')
 # DB['horm']=float
@@ -51,6 +54,16 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         f.write('norm '+str(DB['norm'])+' \n')
         f.write('* Coeficientes de seguridad EHE o coeficientes phi AASHTO. No es obligatoria '+'\n')  
         f.write('coef horm '+str(DB['coef_horm'])+' arma '+str(DB['coef_arma']) + ' pret '+str(DB['coef_pret'])+  ' \n')
+	
+	  f.write('phi ') 
+        for v in DB['phi'] :
+            for k in v.keys():           
+                f.write(str(v[k])+' ')
+            f.write('\n')
+            
+	
+	
+	
         f.write('* Puntos del contorno '+'\n')  
         f.write('punt '+'\n')
 
