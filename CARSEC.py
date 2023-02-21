@@ -60,7 +60,7 @@ import copy
 
 def CARSEC_Writer(DB,export_path='CARSEC'):
     with open(export_path+'.txt', 'w') as f:
-	f.write(DB['title']+' \n')
+        f.write(DB['title']+' \n')
         #f.write('CARSECN'+' \n')
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
