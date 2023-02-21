@@ -173,7 +173,7 @@ DB['contorno']= collect_numbers(numbers)
 st.write("\n")
 st.write("-***“hp”*** puntos que definen el contorno poligonal")
 st.markdown('**Contorno Poligonal**')
-st.write("-***“hc”*** puntos que define el centro del centro   radio del círculo")
+#st.write("-***“hp”*** puntos que define el centro del centro   radio del círculo")
 
 st.markdown('**hp**')
 collect_numbers_hp = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
@@ -194,7 +194,7 @@ DB['hp']= 'hp'+' ' + str(collect_numbers_hp(numbers_hp))
 # hc
 st.write("\n")
 st.write("-***“hc”*** puntos que define el centro del centro   radio del círculo")
-DB['hc'] = st.selectbox('', options=['hc'])
+#DB['hc'] = st.selectbox('', options=['hc'])
 df_hc = pd.DataFrame(
     '',
     index=range(1),
