@@ -109,7 +109,7 @@ st.write("Definición de cada uno de los puntos")
 
 if 'df_punt' not in st.session_state:
 	_df = {'punt': list(range(1,8)), 'X': [0,2,2,0,1,0.05,1.95],'Y':[0,0,2,2,1,0.05,0.05]}
-	st.session_state.df_punt_contorno= pd.DataFrame(_df,columns=['punt', 'X', 'Y'])
+	st.session_state.df_punt= pd.DataFrame(_df,columns=['punt', 'X', 'Y'])
 
 st.markdown('**Punt**')
 
