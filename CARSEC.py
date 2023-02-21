@@ -31,9 +31,9 @@ import copy
 #DB['phi']= [0:{'phi':'phi','col1':'optional', 'col2':'optional'}]
 #***************
 
-# DB['punt_contorno']=[0:{'punt':1, 'X':0,'Y':0},'punt':2, 'X':2,'Y':0},...] # pandasDataFrame.to_dict('records')
+# DB['punt']=[0:{'punt':1, 'X':0,'Y':0},'punt':2, 'X':2,'Y':0},...] # pandasDataFrame.to_dict('records')
 # DB['horm']=float
-# DB['contorno_Poligonal']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
+# DB['contorno']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
 # DB['hc']=[0:{'Punto_Central':5,'Radio':0.3}]
 #********
 # DB['hp']=[0:{'Punto_Central':5,'Radio':0.3}]
@@ -79,7 +79,7 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             
         f.write('horm '+str(DB['horm'])+' \n')
         
-        for v in DB['contorno_Poligonal']:
+        for v in DB['contorno']:
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
