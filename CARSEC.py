@@ -66,10 +66,10 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
 	
 	
 	
-        f.write('* Puntos del contorno '+'\n')  
+        f.write('* Punt '+'\n')  
         f.write('punt '+'\n')
 
-        for v in DB['punt_contorno']:
+        for v in DB['punt']:
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
