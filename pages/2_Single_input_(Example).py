@@ -96,7 +96,7 @@ st.write("Establece los coeficientes reductores que emplea la AASHTO. No es obli
 
 
 # *************************
-#* Punto del contorno
+#* Punt
 st.write("-***“punt”*** [“[ “ unidad longitud “ ]”]")
 st.write("Indica que comienza la definición de las coordenadas de los puntos de la sección. Se puede definir la unidad en la que están dados los datos (m, cm, mm, in, ft)")
 
@@ -107,22 +107,22 @@ st.write("Definición de cada uno de los puntos")
 
 # always check if the key exist in session state:
 
-if 'df_punt_contorno' not in st.session_state:
+if 'df_punt' not in st.session_state:
 	_df = {'punt': list(range(1,8)), 'X': [0,2,2,0,1,0.05,1.95],'Y':[0,0,2,2,1,0.05,0.05]}
 	st.session_state.df_punt_contorno= pd.DataFrame(_df,columns=['punt', 'X', 'Y'])
 
-st.markdown('**Punto del contorno**')
+st.markdown('**Punt**')
 
 if st.button("Clear table"):
     # update dataframe state
-	st.session_state.df_punt_contorno= pd.DataFrame('',index=range(7), columns=['punt', 'X', 'Y'])
+	st.session_state.df_punt= pd.DataFrame('',index=range(7), columns=['punt', 'X', 'Y'])
 
 if st.button("Add rows"):
     # update dataframe state
 	additional_rows= pd.DataFrame('',index=range(5), columns=['punt', 'X', 'Y'])
-	st.session_state.df_punt_contorno=pd.concat([st.session_state.df_punt_contorno,additional_rows])
+	st.session_state.df_punt=pd.concat([st.session_state.df_punt,additional_rows])
 	
-_df=st.session_state.df_punt_contorno.copy()
+_df=st.session_state.df_punt.copy()
   
 with st.form('test') as f:
 	response = AgGrid(_df, editable=True, fit_columns_on_grid_load=True,data_return_mode=DataReturnMode.AS_INPUT,update_mode=GridUpdateMode.MODEL_CHANGED,reload_data=False,
@@ -130,9 +130,9 @@ with st.form('test') as f:
 	st.form_submit_button('Confirm')
 
 
-st.session_state.df_punt_contorno=response['data'].dropna(axis='rows', how='any')
-st.write(st.session_state.df_punt_contorno)
-DB['punt_contorno'] = response['data'].dropna(axis='rows', how='any').to_dict('records')
+st.session_state.df_punt=response['data'].dropna(axis='rows', how='any')
+st.write(st.session_state.df_punt)
+DB['punt'] = response['data'].dropna(axis='rows', how='any').to_dict('records')
 
 ## Generate Graphic
 
