@@ -35,7 +35,7 @@ import copy
 # DB['horm']=float
 # DB['contorno']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
 
-# DB['hp']=0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
+# DB['hp']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
 #********
 # DB['hc']=[0:{'Punto_Central':5,'Radio':0.3}]
 #********
@@ -85,10 +85,10 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
                 f.write(str(v[k])+' ')
             f.write('\n')
 	
-	for v in DB['hp']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
+	#for v in DB['hp']:
+         #   for k in v.keys():           
+          #      f.write(str(v[k])+' ')
+           # f.write('\n')
 	
               
         f.write('hc ') 
