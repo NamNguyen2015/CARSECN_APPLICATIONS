@@ -168,14 +168,14 @@ DB['contorno']= collect_numbers(numbers)
 
 # *************************
 # hp
-st.write("\n")
-st.write("-***“hp”*** puntos que definen el contorno poligonal")
-st.markdown('**Contorno Poligonal**')
+#st.write("\n")
+#st.write("-***“hp”*** puntos que definen el contorno poligonal")
+#st.markdown('**Contorno Poligonal**')
 
-st.markdown('**hp**')
-collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
-numbers = st.text_input("Enter la lista de los puntos hp:")
-DB['hp']= collect_numbers(numbers)
+#st.markdown('**hp**')
+#collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
+#numbers = st.text_input("Enter la lista de los puntos hp:")
+#DB['hp']= collect_numbers(numbers)
 
 
 
