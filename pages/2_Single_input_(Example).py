@@ -27,7 +27,8 @@ st.write("En el fichero de datos está permitido hacer comentarios utilizando el
 
 st.write("\n")
 st.write("-***Titulo de la sección.*** Es obligatorio y debe ser la primera línea.")
-st.selectbox( '"Titulo"',['CARSECN'])
+title = st.text_input("Enter el titulo: ")
+DB['titulo']=title
 
 
 # 3-unid
