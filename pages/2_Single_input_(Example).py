@@ -174,9 +174,9 @@ st.markdown('**Contorno Poligonal**')
 
 st.markdown('**hp**')
 
-collect_numbers_hp = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
+#collect_numbers_hp = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 numbers_hp = st.text_input("Enter la lista de los puntos hp:")
-DB['hp']= collect_numbers_hp(numbers_hp)
+DB['hp']= collect_numbers(numbers_hp)
 
 
 
