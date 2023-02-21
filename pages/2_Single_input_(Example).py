@@ -162,7 +162,7 @@ st.markdown('**Contorno**')
 
 collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 numbers = st.text_input("Enter la lista de los puntos:")
-DB['contorno_Poligonal']= collect_numbers(numbers)
+DB['contorno']= collect_numbers(numbers)
 #st.write(DB['contorno'])
 
 
