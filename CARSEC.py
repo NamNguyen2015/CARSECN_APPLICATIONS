@@ -47,7 +47,10 @@ import copy
 #********
 # DB['hc']=[0:{'Punto_Central':5,'Radio':0.3}]
 #********DB['arma'] is a list of a nest dictionary
-# DB['arma']=['def_de_hormigon':{'fyk':float}, 'arma_single': {'punto donde está armadura': int, área: float}, 'arma_multi':{'punto inicial':int, 'punto final':int, 'numero de armaduras': int, 'area de cada armadura':float}]
+# DB['arma_fyk']= float
+#DB['arma']=['arma_single': {'punto donde está armadura': int, área: float}, 'arma_multi':{'punto inicial':int, 'punto final':int, 'numero de armaduras': int, 'area de cada armadura':float}]
+#
+#DB['arma']={'fyk':float, 'arma_single': [['punto donde está armadura (int)', 'área(float)']], 'arma_multi':['punto inicial, 'punto final', 'numero de armaduras', 'area de cada armadura']}
 #
 ## DB['punt_armadura']=[0:{'Punto_Inicial':6,'Punto_Final':7,'No_Armadura':10, 'Area':0.000314}]# this will be deleted
 #DB['pret']=['def_de_hormigon_y_tension_inicial':{'fpk':float, 'tensión inicio':float}, 'pret_single': {'punto donde está el cable': int, área: float}, 'pret_multi':{'punto inicial':int, 'punto final':int, 'numero de cables': int, 'area de cada cable':float}]
@@ -120,7 +123,8 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
                 f.write(str(v[k])+' ')
             f.write('\n')
                 
-        f.write('calc inte'+' \n')
+        #f.write(DB['calc']+' \n')
+	if DB['norn']=='ehe' or 
         for v in DB['LC'] :
             for k in v.keys():
                 f.write(str(v[k])+' ' )
@@ -168,7 +172,9 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['coef_arma']=multi_DB[i][k]['coef_arma'].tolist()[0]
 				multi_DB[i]['coef_pret']=multi_DB[i][k]['coef_pret'].tolist()[0]
 				multi_DB[i]['horm']=multi_DB[i][k]['horm'].tolist()[0]
-				multi_DB[i]['arma']=multi_DB[i][k]['arma'].tolist()[0]
+				multi_DB[i]['arma_fyk']=multi_DB[i][k]['arma_fyk'].tolist()[0]
+				multi_DB[i]['pret_fpk']=multi_DB[i][k]['pret_fpk'].tolist()[0]
+				multi_DB[i]['pret_tension']=multi_DB[i][k]['pret_tension'].tolist()[0]
 				
 			elif k=="Geometries":
 				multi_DB[i]['punt_contorno']=multi_DB[i][k].iloc[:,1:10].dropna(axis=1).to_dict('record')
