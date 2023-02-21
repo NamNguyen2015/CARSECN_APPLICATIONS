@@ -85,7 +85,7 @@ df_phi['col3']=''
 
 st.markdown('**phi**')
 response = AgGrid(df_phi, editable=True, fit_columns_on_grid_load=True)
-DB['hc']= response['data'].to_dict('records')
+DB['phi']= response['data'].to_dict('records')
 #st.write(DB['phi'])
 
 #*******************
