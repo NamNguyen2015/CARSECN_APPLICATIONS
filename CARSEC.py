@@ -85,10 +85,10 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
                 f.write(str(v[k])+' ')
             f.write('\n')
 	
-	for v in DB['hp']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
+	#for v in DB['hp']:
+         #   for k in v.keys():           
+          #      f.write(str(v[k])+' ')
+           # f.write('\n')
               
         f.write('hc ') 
         for v in DB['hc'] :
