@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Tue Feb 21 12:41:19 2023
+
+@author: namnguyen
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
 Created on Mon Dec 12 14:29:57 2022
 
 @author: namnguyen
@@ -84,12 +92,12 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
-	
-	for v in DB['hp']:
+
+        for v in DB['hp']:
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
-	
+
               
         f.write('hc ') 
         for v in DB['hc'] :
