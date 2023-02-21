@@ -166,8 +166,6 @@ DB['contorno']= collect_numbers(numbers)
 #st.write(DB['contorno'])
 
 
-
-
 # *************************
 # hp
 st.write("\n")
