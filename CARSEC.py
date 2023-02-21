@@ -28,7 +28,7 @@ import copy
 
 # =============================================================================
 
-
+# DB['titulo']=str
 # DB['secc']=str
 # DB['unid']=str
 # DB['norm']=str
@@ -46,10 +46,13 @@ import copy
 # DB['hp']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
 #********
 # DB['hc']=[0:{'Punto_Central':5,'Radio':0.3}]
-#********
-# DB['arma']=float
-# DB['punt_armadura']=[0:{'Punto_Inicial':6,'Punto_Final':7,'No_Armadura':10, 'Area':0.000314}]
-# DB['LC']=[0:{"Axil":-10, 'monento_X':5, 'monento_Y':2}]
+#********DB['arma'] is a list of a nest dictionary
+# DB['arma']=['def_de_hormigon':{'fyk':float}, 'arma_single': {'punto donde está armadura': int, área: float}, 'arma_multi':{'punto inicial':int, 'punto final':int, 'numero de armaduras': int, 'area de cada armadura':float}]
+#
+## DB['punt_armadura']=[0:{'Punto_Inicial':6,'Punto_Final':7,'No_Armadura':10, 'Area':0.000314}]# this will be deleted
+#DB['pret']=['def_de_hormigon_y_tension_inicial':{'fpk':float, 'tensión inicio':float}, 'pret_single': {'punto donde está el cable': int, área: float}, 'pret_multi':{'punto inicial':int, 'punto final':int, 'numero de cables': int, 'area de cada cable':float}]
+# D['calc']=selectbox[dibu, inte/inte vert]
+#DB['LC']=[0:{"Axil":-10, 'monento_X':5, 'monento_Y':2}]
 # 
 # =============================================================================
 
@@ -57,7 +60,8 @@ import copy
 
 def CARSEC_Writer(DB,export_path='CARSEC'):
     with open(export_path+'.txt', 'w') as f:
-        f.write('CARSECN'+' \n')
+	f.write(DB['title']+' \n')
+        #f.write('CARSECN'+' \n')
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
         f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')  
