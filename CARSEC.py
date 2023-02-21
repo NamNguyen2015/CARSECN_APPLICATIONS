@@ -33,7 +33,7 @@ import copy
 
 # DB['punt']=[0:{'punt':1, 'X':0,'Y':0},'punt':2, 'X':2,'Y':0},...] # pandasDataFrame.to_dict('records')
 # DB['horm']=float
-# DB['contorno']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
+# DB['contorno']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...},1: {'Punto_11':11,'Punto_21':21,'Punto_31':31,'Punto_41':41,...}]
 
 # DB['hp']=[0:{'Punto_1':1,'Punto_2':2,'Punto_3':3,'Punto_4':4,...}]
 #********
@@ -85,10 +85,10 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
                 f.write(str(v[k])+' ')
             f.write('\n')
 	
-	#for v in DB['hp']:
-         #   for k in v.keys():           
-          #      f.write(str(v[k])+' ')
-           # f.write('\n')
+	for v in DB['hp']:
+            for k in v.keys():           
+                f.write(str(v[k])+' ')
+            f.write('\n')
 	
               
         f.write('hc ') 
