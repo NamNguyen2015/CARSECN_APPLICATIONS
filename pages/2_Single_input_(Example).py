@@ -17,9 +17,15 @@ import CARSEC as CS
 import tempfile
 import re
 
+import os
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
 
-st.subheader("Single Input")
-st.markdown("**We create this page with manual introductions for all input parameters. It also allows user click and download the template as an example.**")
+path=os.getcwd()
+print(path)
+#st.subheader("Single Input")
+#st.markdown("**We create this page with manual introductions for all input parameters. It also allows user click and download the template as an example.**")
+
+#Example
 
 DB = {}
 #**********************************
@@ -27,7 +33,8 @@ st.write("En el fichero de datos está permitido hacer comentarios utilizando el
 
 st.write("\n")
 st.write("-***Titulo de la sección.*** Es obligatorio y debe ser la primera línea.")
-title = st.text_input("Enter el titulo: ")
+title=st.text_input('Type the title: ')
+
 DB['titulo']=title
 
 
@@ -39,7 +46,10 @@ st.markdown("tm	Toneladas y metros")
 st.write("     " "knm	Kilonewtons y metros")
 st.write("     ""kift	Kilolibras y pies")
 st.write("Los resultados se darán en las unidades definidas en este campo.")
-DB['unid'] = st.selectbox('"unid"' , options=['tm','knm','lbin'])
+
+
+unid=st.selectbox('"unid"' , options=['tm','knm','lbin'])
+DB['unid']=unid
 
 # 4-norm
 st.write("\n")
@@ -50,12 +60,15 @@ st.write("Indica la normativa a emplear en el cálculo. Las opciones son")
 st.write("ehe	EHE-08")
 st.write("aashto	AASHTO")
 
-DB['norm'] = st.selectbox('"norm"', options=['ehe','aashto'])
 
-# 2-secc
+norm= st.selectbox('"norm"', options=['ehe','aashto'])
+DB['norm']=norm
+
+# 2-secc_horm
 st.write("\n")
 st.write("-***“secc horm”*** [módulo de elasticidad] (por defecto toma 3000000 t/m2)")
-DB['secc'] = st.selectbox('"secc"', options=['horm'])
+secc_horm= st.selectbox('"secc horm"', options=['horm'])
+DB['secc']=secc_horm
 
 
 
@@ -64,31 +77,26 @@ DB['secc'] = st.selectbox('"secc"', options=['horm'])
 st.write("\n")
 st.write("-[***“coef”*** [“horm” ghorm] [“arma” garma] [“pret” gpret]].") 
 st.write("Establece los coeficientes de minoración de los materiales. No es obligatorio poner esta línea. Si se ha definido como normativa la EHE-08 los coeficientes por defecto son 1,50 para el hormigón y 1,15 para los aceros. En el caso de la AASHTO todos los coeficientes valen por defecto la unidad.")
+DB['coef']={'coef_horm': st.number_input('"horm"', 1.5),'coef_arma': st.number_input('"arma"', 1.15),'coef_pret': st.number_input('"pret"', 1.15)}
+# =============================================================================
+# DB['coef'].coef_horm = st.number_input('"horm"', 1.5)
+# DB['coef'].coef_arma = st.number_input('"arma"', 1.15)
+# DB['coef'].coef_pret = st.number_input('"pret"', 1.15)
+# =============================================================================
 
-DB['coef_horm'] = st.number_input('"horm"', 1.5)
-DB['coef_arma'] = st.number_input('"arma"', 1.15)
-DB['coef_pret'] = st.number_input('"pret"', 1.15)
-
-
-
-# *************************
-# phi
-st.write("\n")
-#DB['phi'] = st.selectbox('', options=['phi'])
+DB['phi'] = st.selectbox('', options=['phi'])
 df_phi = pd.DataFrame(
     '',
     index=range(1),
-    columns=['col1', 'col2','col3']
+    columns=['col1', 'col2', 'col3']
 )
 df_phi['col1']='phi'
-df_phi['col2']=''
-df_phi['col3']=''
+df_phi['col2']=0.75
+df_phi['col3']=0.90
 
 st.markdown('**phi**')
 response = AgGrid(df_phi, editable=True, fit_columns_on_grid_load=True)
 DB['phi']= response['data'].to_dict('records')
-#st.write(DB['phi'])
-
 #*******************
 st.write("\n")
 st.write("-[***“phi”*** compr tracc]")
@@ -97,7 +105,7 @@ st.write("Establece los coeficientes reductores que emplea la AASHTO. No es obli
 
 
 # *************************
-#* Punt
+#* Punto del contorno
 st.write("-***“punt”*** [“[ “ unidad longitud “ ]”]")
 st.write("Indica que comienza la definición de las coordenadas de los puntos de la sección. Se puede definir la unidad en la que están dados los datos (m, cm, mm, in, ft)")
 
@@ -112,7 +120,7 @@ if 'df_punt' not in st.session_state:
 	_df = {'punt': list(range(1,8)), 'X': [0,2,2,0,1,0.05,1.95],'Y':[0,0,2,2,1,0.05,0.05]}
 	st.session_state.df_punt= pd.DataFrame(_df,columns=['punt', 'X', 'Y'])
 
-st.markdown('**Punt**')
+st.markdown('**Punto del contorno**')
 
 if st.button("Clear table"):
     # update dataframe state
@@ -133,16 +141,18 @@ with st.form('test') as f:
 
 st.session_state.df_punt=response['data'].dropna(axis='rows', how='any')
 st.write(st.session_state.df_punt)
-DB['punt'] = response['data'].dropna(axis='rows', how='any').to_dict('records')
+DB['puntos'] = response['data'].dropna(axis='rows', how='any').to_dict('records')
 
 ## Generate Graphic
 
 x=response['data']['X'].values.tolist()[0:4]
 y=response['data']['Y'].values.tolist()[0:4]
 
-CS.polygonal_graphics(x, y,path="Output_files/graph")
-st.image("Output_files/graph.png")
-
+# =============================================================================
+# CS.polygonal_graphics(x, y,path="Output_files/graph")
+# st.image("Output_files/graph.png")
+# 
+# =============================================================================
 # *************************hormigon
 st.write("\n")
 st.write("-***“horm”*** fck [“[ “ unidad tensión “ ]”]")
@@ -152,36 +162,36 @@ st.write("Se puede definir las unidades en las que está dada la resistencia del
 
 
 t_h = st.selectbox("Unidad de hormigon", options=["tm2", "kcm2", "mpa", "ksi","ksf", "knm2"])
+fck=st.text_input('"horm"', 3500)
 
-DB['horm'] = st.text_input('"horm"', 3500)
-
-# *************************
 
 st.write("\n")
-st.write("-***“contorno”*** puntos que definen el contorno")
+st.write("-***“Contorno”*** puntos que definen el contorno ")
 st.markdown('**Contorno**')
 
 collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 numbers = st.text_input("Enter la lista de los puntos:")
-DB['contorno']= collect_numbers(numbers)
-#st.write(DB['contorno'])
+puntos_contorno= collect_numbers(numbers)
+
+DB['horm']={'fck':fck,'puntos_contorno':puntos_contorno}
+
 
 
 # *************************
-# hp
+# Contorno Poligonal (hp)
 st.write("\n")
 st.write("-***“hp”*** puntos que definen el contorno poligonal")
 st.markdown('**Contorno Poligonal**')
 
-st.markdown('**hp**')
-
-#collect_numbers_hp = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
+#collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
 numbers_hp = st.text_input("Enter la lista de los puntos hp:")
 DB['hp']= collect_numbers(numbers_hp)
+#st.write(DB['contorno_Poligonal'])
 
 
 
 
+#***************************
 
 
 
@@ -189,7 +199,7 @@ DB['hp']= collect_numbers(numbers_hp)
 # hc
 st.write("\n")
 st.write("-***“hc”*** puntos que define el centro del centro   radio del círculo")
-#DB['hc'] = st.selectbox('', options=['hc'])
+DB['hc'] = st.selectbox('', options=['hc'])
 df_hc = pd.DataFrame(
     '',
     index=range(1),
@@ -215,14 +225,32 @@ st.selectbox("unidad tensión ", options=["tm2", "kcm2", "mpa", "ksi","ksf", "kn
 st.write("Se puede definir las unidades en las que está dada el área del acero (m2, cm2, mm2, ft2, in2). Para poder dar las unidades del área debe estar definida la unidad del límite elástico")
 st.selectbox("unidad área ", options=["m2", "cm2", "mm2", "ft2", "in2"])
 
+fyk=st.text_input('"arma"', 51000)
 
-DB['arma'] = st.text_input('"arma"', 51000)
 
 # *************************
 
 # Caracteristicas
 st.write("\n")
-st.write("-punto inicial    punto final      número de cables     área de cada cable")
+#st.write("-punto inicial    punto final      número de cables     área de cada cable")
+df_Caracteristicas_single = pd.DataFrame(
+    '',
+    index=range(1),
+    columns=['Punto','Area']
+)
+df_Caracteristicas_single['Punto']=[6]
+
+df_Caracteristicas_single['Area']=[0.000314]
+
+st.markdown('**Caracteristicas_ Armaduras_Single**')
+response = AgGrid(df_Caracteristicas_single, editable=True, fit_columns_on_grid_load=True)
+single = response['data'].to_dict('records')
+
+
+
+
+st.write("\n")
+#st.write("-punto inicial    punto final      número de cables     área de cada cable")
 df_Caracteristicas = pd.DataFrame(
     '',
     index=range(1),
@@ -234,9 +262,58 @@ df_Caracteristicas['Punto_Final']=[7]
 df_Caracteristicas['No_Armadura']=[10]
 df_Caracteristicas['Area']=[0.000314]
 
-st.markdown('**Caracteristicas**')
+st.markdown('**Caracteristicas_ Armaduras_Multi**')
 response = AgGrid(df_Caracteristicas, editable=True, fit_columns_on_grid_load=True)
-DB['punt_armadura']  = response['data'].to_dict('records')
+group  = response['data'].to_dict('records')
+
+DB['arma']={'fyk':fyk, 'single':single, 'group':group}
+#************************
+
+
+
+fpk=st.text_input('"pret"', [1000, 2000])
+# Caracteristicas
+st.write("\n")
+#st.write("-punto inicial    punto final      número de cables     área de cada cable")
+df_Caracteristicas_single_pret = pd.DataFrame(
+    '',
+    index=range(1),
+    columns=['Punto1','Area1']
+)
+df_Caracteristicas_single_pret['Punto1']=[6]
+
+df_Caracteristicas_single_pret['Area1']=[0.000314]
+
+st.markdown('**Caracteristicas_ Cables_Single**')
+response = AgGrid(df_Caracteristicas_single_pret, editable=True, fit_columns_on_grid_load=True)
+single_pret = response['data'].to_dict('records')
+
+
+
+
+st.write("\n")
+#st.write("-punto inicial    punto final      número de cables     área de cada cable")
+df_Caracteristicas_pret = pd.DataFrame(
+    '',
+    index=range(1),
+    columns=['Punto_Inicial1', 'Punto_Final1', 'No_Armadura1', 'Area1']
+)
+df_Caracteristicas_pret['Punto_Inicial1']=[6]
+
+df_Caracteristicas_pret['Punto_Final1']=[7]
+df_Caracteristicas_pret['No_Armadura1']=[10]
+df_Caracteristicas_pret['Area1']=[0.000314]
+
+st.markdown('**Caracteristicas_Cables_Multi**')
+response = AgGrid(df_Caracteristicas_pret, editable=True, fit_columns_on_grid_load=True)
+multi_pret  = response['data'].to_dict('records')
+
+DB['pret']={'fpk':fpk, 'single':single_pret, 'group':multi_pret}
+#************************
+
+
+
+
 
 # *************************
 #st.write("* Calculate of section")
@@ -254,11 +331,11 @@ st.write("Si se quiere obtener el diagrama de interacción vertical, únicamente
 st.write("Se puede definir las unidades en las que están dados los axiles y momentos. Para el caso de diagrama de interacción se ponen unidades de momento (tm, knm, kift, kiin). Para el caso de momento curvatura se ponen unidades de fuerza (t, kn, kip).")
 
 
-calc = st.selectbox("calc", options=["dibu", "inte"])
+calc = st.selectbox("calc", options=["dibu", "inte", "inte vert"])
+
+DB['calc']=calc
 
 st.write("-Axil     momento X    momento Y")
-
-
 
 
 df_LC = pd.DataFrame(
@@ -283,20 +360,24 @@ st.write("-Axil     beta")
 
 
 
-
 #%%
 file='Carsec_AutoGenerated'
 #name_file = tempfile.gettempdir() + "/Carsec_AutoGenerated"
-name_file = os.path.join(tempfile.gettempdir(),file)
+#name_file = os.path.join(tempfile.gettempdir(),file)
+#path=os.getcwd()
+name_file = os.path.join(path,file)
 
 CS.CARSEC_Writer(DB=DB, export_path=name_file)
 #st.write(CS.CARSEC_Writer(DB=DB, export_path="Output_files/Carsec_AutoGenerated.txt"))
 
-
-st.subheader('Download data')
-name_file_txt = name_file + '.txt'
-with open(name_file_txt, "rb") as fp:
-	btn = st.download_button(label="Download Carsec Input file",data=fp,file_name="Carsec_AutoGenerated.txt",mime="application/txt")
-	
-
+# =============================================================================
+# 
+# st.subheader('Download data')
+# name_file_txt = name_file + '.txt'
+# with open(name_file_txt, "rb") as fp:
+# 	btn = st.download_button(label="Download Carsec Input file",data=fp,file_name="Carsec_AutoGenerated.txt",mime="application/txt")
+# 	
+# 
+# 
+# =============================================================================
 
