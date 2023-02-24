@@ -66,11 +66,11 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             f.write('\n')
 
         f.write('* Puntos '+'\n')  
-        f.write('punt '+' ')
+        f.write('punt '+'\n ')
         for v in DB['puntos']:
             for k in v.keys():           
                 f.write(str(v[k])+' ')
-                f.write('\n')
+	    f.write('\n')
 
         f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
 
