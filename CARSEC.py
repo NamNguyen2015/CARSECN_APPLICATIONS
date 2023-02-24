@@ -209,7 +209,7 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['calc']=_df['calc'].tolist()[0]
 				
 			elif k=='puntos':
-				multi_DB[i]['puntos']=_df.iloc[:,1:100].dropna().to_dict('records')
+				multi_DB[i]['puntos']=_df.iloc[:,1:100].to_dict('records')
 
 			elif k=='puntos_contorno':
 				_list=[]
