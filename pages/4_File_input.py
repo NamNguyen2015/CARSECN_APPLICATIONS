@@ -27,7 +27,8 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
 	st.write('Data preview')
 	_tables=pd.read_excel(uploaded_file,sheet_name=None)
-	for k in _tables:  
+	for k in _tables: 
+		st.write(k)
 		st.write(_tables[k])
 #%%%%%%%%%%%%%%%%%%%
 st.subheader('Download Muti CARSEC files')
