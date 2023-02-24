@@ -256,7 +256,7 @@ def excel_to_CARSEC(load_path,export_path='CS_Multi_'):
 	dict_tables = pd.read_excel(load_path,sheet_name=None)
 	multi_DB=table_to_dict(dict_tables)
 	multi_CARSEC_writer(multi_DB=multi_DB,export_path=export_path)
-	return dict_tables,multi_DB
+	#return dict_tables,multi_DB
 
 
 
