@@ -176,6 +176,8 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['coef']['coef_horm']=_df['coef_horm'].tolist()[0]
 				multi_DB[i]['coef']['coef_arma']=_df['coef_arma'].tolist()[0]
 				multi_DB[i]['coef']['coef_pret']=_df['coef_pret'].tolist()[0]
+				multi_DB[i]['phi']['phi_compression']=_df['phicompression'].tolist()[0]
+				multi_DB[i]['phi']['phi_traction']=_df['traction'].tolist()[0]
 				#parameters for concrete
 				multi_DB[i]['horm']['fck']=_df['horm_fck'].tolist()[0]
 				# parameters for armadura
