@@ -65,28 +65,25 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
                 f.write(str(v[k])+' ')
             f.write('\n')
 
-
         f.write('* Puntos '+'\n')  
         f.write('punt '+'\n')
         for v in DB['puntos']:
             for k in v.keys():           
                 f.write(str(v[k])+' ')
-                f.write('\n')
+            f.write('\n')
 
-	
+         #f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
+  #DB['horm']={'fck':float,'puntos_contorno':[[points],[points],...]}
         f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
-
-        f.write('horm '+str(DB['horm']['fck'])+' \n')
-
         for i in DB['horm']['puntos_contorno']:
-            f.write('horm '+str(DB['horm']['fck'])+' \n')
-            for v in i:
-                f.write(str(v)+' ')
-                f.write('\n')
+             f.write('horm '+str(DB['horm']['fck'])+' \n')
+             for v in i:
+                 f.write(str(int(v))+' ')
+             f.write('\n')
                 
-        f.write('hp ')
+        #f.write('hp ')
         for v in DB['hp'] :
-            #f.write('hp ')
+            f.write('hp ')
             for k in v:           
                 f.write(str(k)+' ')
             f.write('\n')
@@ -133,7 +130,6 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             for k in v.keys():
                 f.write(str(v[k])+' ' )
             f.write('\n')
-	#f.write('Axil')
         f.write('fin')
 #       f.write('hc ') 
 #       for v in DB['hc'] :
@@ -211,6 +207,7 @@ def table_to_dict(dict_tables):
 				
 			elif k=='puntos':
 				multi_DB[i]['puntos']=_df.iloc[:,1:100].to_dict('records')
+
 
 			elif k=='puntos_contorno':
 				_list=[]
