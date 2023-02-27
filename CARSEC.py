@@ -48,8 +48,8 @@ from collections import defaultdict,OrderedDict
 #%% Functions:
 def CARSEC_Writer(DB,export_path='CARSEC'):
     with open(export_path+'.txt', 'w') as f:
-        #f.write('CARSECN'+' \n')
         f.write(DB['titulo']+' \n')
+        #f.write(DB['titulo']+' \n')
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
         f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')
