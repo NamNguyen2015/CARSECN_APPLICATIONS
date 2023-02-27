@@ -48,7 +48,8 @@ from collections import defaultdict,OrderedDict
 #%% Functions:
 def CARSEC_Writer(DB,export_path='CARSEC'):
     with open(export_path+'.txt', 'w') as f:
-        f.write('CARSECN'+' \n')
+        #f.write('CARSECN'+' \n')
+	f.write(DB['titulo']+' \n')
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
         f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')
@@ -167,6 +168,7 @@ def table_to_dict(dict_tables):
 	multi_DB={}
 	for i in ID_list:
 		multi_DB[i]=defaultdict(lambda: defaultdict(dict))
+		multi_DB[i]['titulo']=i
 		for k in dict_tables:
 			_df = dict_tables[k][dict_tables[k]['ID'] == i]
 			if k=='Properties':
