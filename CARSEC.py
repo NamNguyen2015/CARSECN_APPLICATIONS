@@ -77,8 +77,7 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         for i in DB['horm']['puntos_contorno']:
             f.write('horm '+str(DB['horm']['fck'])+' \n')
             for v in i:
-		if v!='':
-                    f.write(str(int(v))+' ')
+                f.write(str(int(v))+' ')
             f.write('\n')
                 
         #f.write('hp ')
@@ -135,113 +134,6 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
     
     
 
-def CARSEC_Writer1(DB,export_path='CARSEC'):
-    with open(export_path+'.txt', 'w') as f:
-        f.write('CARSECN'+' \n')
-        f.write('* Tipo de seccion '+'\n')  
-        f.write('secc '+str(DB['secc'])+' \n')
-        f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')
-        f.write('unid '+str(DB['unid'])+' \n')
-        f.write('* Normativa a emplear. Opciones: ehe  asashto '+'\n')  
-        f.write('norm '+str(DB['norm'])+' \n')
-        f.write('* Coeficientes de seguridad EHE o coeficientes phi AASHTO. No es obligatoria '+'\n')  
-        f.write('coef horm '+str(DB['coef']['coef_horm'])+' arma '+str(DB['coef']['coef_arma']) + ' pret '+str(DB['coef']['coef_pret'])+  ' \n')
-        
-        f.write('phi '+str(DB['phi'])+ '\n')
-        for v in DB['phi']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-
-        f.write('* Puntos '+'\n')  
-        f.write('punt '+'\n')
-        for v in DB['puntos']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-
-         #f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
-  #DB['horm']={'fck':float,'puntos_contorno':[[points],[points],...]}
-        f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
-        for i in DB['horm']['puntos_contorno']:
-             f.write('horm '+str(DB['horm']['fck'])+' \n')
-             for v in i:
-                 if v!='':	
-                     f.write(str(int(v))+' ')
-             f.write('\n')
-                
-        #f.write('hp ')
-        for v in DB['hp'] :
-            f.write('hp ')
-            for k in v:           
-                f.write(str(k)+' ')
-            f.write('\n')
-            
-            
-        f.write('hc ') 
-        for v in DB['hc'] :
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-            
-        f.write('* Definicion del acero pasivo: fyk '+'\n')   
-        
-        f.write('arma '+str(DB['arma']['fyk'])+' \n')
-    
-        for v in DB['arma']['single']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-        
-        for v in DB['arma']['group']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-            
-        f.write('pret '+str(DB['pret']['fpk'])+' \n')
-        
-        for v in DB['pret']['single']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-        
-        for v in DB['pret']['group']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
-            f.write('\n')
-        
-        
-        if DB['norm'] != 'aashto' and  DB['calc']== 'inte vert':
-            print(' vert only available for aashto!, the calc parameter has changed to inte')
-            DB['calc']='inte'
-        f.write('calc '+str(DB['calc'])+' \n')        
-        for v in DB['LC'] :
-            for k in v.keys():
-                f.write(str(v[k])+' ' )
-            f.write('\n')
-        f.write('fin')
-#       f.write('hc ') 
-#       for v in DB['hc'] :
-#           for k in v.keys():
-#               f.write(str(v[k])+' ')
-#       f.write('\n')
-#            
-#        f.write('* Definicion del acero pasivo: fyk '+'\n')   
-#        
-#        f.write('arma '+str(DB['arma'])+' \n')
-#    
-#        for v in DB['punt_armadura']:
-#            for k in v.keys():           
-#                f.write(str(v[k])+' ')
-#            f.write('\n')
-#            
-#        
-#        f.write('calc inte'+' \n')
-#        for v in DB['LC'] :
-#            for k in v.keys():
-#                f.write(str(v[k])+' ' )
-#            f.write('\n')
-#        f.write('fin')
 #%%                         
     
 def save_to_json(DB,name='my_DB'):
