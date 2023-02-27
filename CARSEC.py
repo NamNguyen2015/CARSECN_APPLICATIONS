@@ -78,8 +78,8 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
              for v in i:
                  if v != '':
                      f.write(str(int(v)) + ' ')
-                 else:
-                     f.write('0 ')
+                 #else:
+                  #   f.write('0 ')
                  #f.write(str(int(v))+'')
 		 #f.write(str(int(v))+' ')
              f.write('\n')
