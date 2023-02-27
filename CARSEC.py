@@ -71,9 +71,7 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
-
-         #f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
-  #DB['horm']={'fck':float,'puntos_contorno':[[points],[points],...]}
+    
         f.write('* Definición del hormigón: fck, modulo de elasticidad. Este último es obligatorio '+'\n')     
         for i in DB['horm']['puntos_contorno']:
              f.write('horm '+str(DB['horm']['fck'])+' \n')
@@ -132,29 +130,7 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
                 f.write(str(v[k])+' ' )
             f.write('\n')
         f.write('fin')
-#       f.write('hc ') 
-#       for v in DB['hc'] :
-#           for k in v.keys():
-#               f.write(str(v[k])+' ')
-#       f.write('\n')
-#            
-#        f.write('* Definicion del acero pasivo: fyk '+'\n')   
-#        
-#        f.write('arma '+str(DB['arma'])+' \n')
-#    
-#        for v in DB['punt_armadura']:
-#            for k in v.keys():           
-#                f.write(str(v[k])+' ')
-#            f.write('\n')
-#            
-#        
-#        f.write('calc inte'+' \n')
-#        for v in DB['LC'] :
-#            for k in v.keys():
-#                f.write(str(v[k])+' ' )
-#            f.write('\n')
-#        f.write('fin')
-#%%                         
+
     
 def save_to_json(DB,name='my_DB'):
     with open(name+'.json', 'w') as f:
@@ -243,13 +219,9 @@ def table_to_dict(dict_tables):
 	return multi_DB
 
 
-
 def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
 	for i_d in multi_DB:
 		CARSEC_Writer(multi_DB[i_d], export_path=export_path+str(i_d))
-
-
-
 
 def excel_to_CARSEC(load_path,export_path='CS_Multi_'):
 	dict_tables = pd.read_excel(load_path,sheet_name=None)
