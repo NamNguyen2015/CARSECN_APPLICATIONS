@@ -205,7 +205,8 @@ st.write(hp)
 
 DB['hp']= hp
 #st.write(DB['contorno_Poligonal'])
-
+st.write(DB['hp'])
+st.write(hp)
 
 
 
