@@ -58,10 +58,11 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         f.write('* Coeficientes de seguridad EHE o coeficientes phi AASHTO. No es obligatoria '+'\n')  
         f.write('coef horm '+str(DB['coef']['coef_horm'])+' arma '+str(DB['coef']['coef_arma']) + ' pret '+str(DB['coef']['coef_pret'])+  ' \n')
         
+	# DB['phi']={'phi_compresion':float,'phi_traccion':float}
         f.write('phi '+str(DB['phi'])+ '\n')
-        for v in DB['phi']:
-            for k in v.keys():           
-                f.write(str(v[k])+' ')
+        for v in DB['phi'].values(): 
+            #for k in v.keys():           
+            f.write(str(v)+' ')
             f.write('\n')
 
         f.write('* Puntos '+'\n')  
