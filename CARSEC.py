@@ -63,7 +63,7 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         for v in DB['phi'].values(): 
             #for k in v.keys():           
             f.write(str(v)+' ')
-            f.write('\n')
+        f.write('\n')
 
         f.write('* Puntos '+'\n')  
         f.write('punt '+'\n')
