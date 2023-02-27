@@ -76,7 +76,11 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         for i in DB['horm']['puntos_contorno']:
              f.write('horm '+str(DB['horm']['fck'])+' \n')
              for v in i:
-                 f.write(str(int(v))+'')
+                 if v != '':
+                     f.write(str(int(v)) + ' ')
+                 else:
+                     f.write('0 ')
+                 #f.write(str(int(v))+'')
 		 #f.write(str(int(v))+' ')
              f.write('\n')
                 
