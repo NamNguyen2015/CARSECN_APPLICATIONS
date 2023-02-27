@@ -171,7 +171,8 @@ st.markdown('**Contorno**')
 
 
 #collect_numbers = lambda x : [{'Punto_'+str(int(i)):int(i) for i in re.split("[^0-9]", x) if i != "" }]
-collect_numbers = lambda x : [i for i in re.split("[^0-9]", x) if i != " " ]
+#collect_numbers = lambda x : [i for i in re.split("[^0-9]", x) if i != " " ]
+collect_numbers = lambda x : [int(i) for i in re.split("[^0-9]", x) if type(int(i))==int ]
 
 
 _list_puntos=list()
