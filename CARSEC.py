@@ -49,7 +49,8 @@ from collections import defaultdict,OrderedDict
 def CARSEC_Writer(DB,export_path='CARSEC'):
     with open(export_path+'.txt', 'w') as f:
         #f.write('CARSECN'+' \n')
-	f.write(DB['titulo']+' \n')
+        f.write(DB['titulo']+' \n')
+        
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
         f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')
@@ -59,10 +60,9 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         f.write('* Coeficientes de seguridad EHE o coeficientes phi AASHTO. No es obligatoria '+'\n')  
         f.write('coef horm '+str(DB['coef']['coef_horm'])+' arma '+str(DB['coef']['coef_arma']) + ' pret '+str(DB['coef']['coef_pret'])+  ' \n')
         
-	# DB['phi']={'phi_compresion':float,'phi_traccion':float}
+        # DB['phi']={'phi_compresion':float,'phi_traccion':float}
         f.write('phi ')
         for v in DB['phi'].values(): 
-            #for k in v.keys():           
             f.write( str(v)+' ')
         f.write('\n')
 
@@ -79,7 +79,8 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         for i in DB['horm']['puntos_contorno']:
             f.write('horm '+str(DB['horm']['fck'])+' \n')
             for v in i:
-                f.write(str(int(v))+' ')
+                if v!='':
+                    f.write(str(int(v))+' ')
             f.write('\n')
                 
         #f.write('hp ')
@@ -169,6 +170,7 @@ def table_to_dict(dict_tables):
 	for i in ID_list:
 		multi_DB[i]=defaultdict(lambda: defaultdict(dict))
 		multi_DB[i]['titulo']=i
+
 		for k in dict_tables:
 			_df = dict_tables[k][dict_tables[k]['ID'] == i]
 			if k=='Properties':
@@ -179,8 +181,9 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['coef']['coef_horm']=_df['coef_horm'].tolist()[0]
 				multi_DB[i]['coef']['coef_arma']=_df['coef_arma'].tolist()[0]
 				multi_DB[i]['coef']['coef_pret']=_df['coef_pret'].tolist()[0]
-				multi_DB[i]['phi']['phi_compression']=_df['phi_compression'].tolist()[0]
-				multi_DB[i]['phi']['phi_traction']=_df['phi_traction'].tolist()[0]
+				# phi
+				multi_DB[i]['phi']['phi_compression']=_df['phicompression'].tolist()[0]
+				multi_DB[i]['phi']['phi_traction']=_df['traction'].tolist()[0]
 				#parameters for concrete
 				multi_DB[i]['horm']['fck']=_df['horm_fck'].tolist()[0]
 				# parameters for armadura
@@ -229,16 +232,16 @@ def table_to_dict(dict_tables):
 
 
 
-#def multi_CARSEC_writer(multi_DB,export_path='_'):
-def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
+#def multi_CARSEC_writer(multi_DB,export_path='CS_Multi_'):
+def multi_CARSEC_writer(multi_DB,export_path=''):
 	for i_d in multi_DB:
 		CARSEC_Writer(multi_DB[i_d], export_path=export_path+str(i_d))
 
 
 
 
-#def excel_to_CARSEC(load_path,export_path='_'):
-def excel_to_CARSEC(load_path,export_path='CS_Multi_'):
+#def excel_to_CARSEC(load_path,export_path='CS_Multi_'):
+def excel_to_CARSEC(load_path,export_path=''):
 	dict_tables = pd.read_excel(load_path,sheet_name=None)
 	multi_DB=table_to_dict(dict_tables)
 	multi_CARSEC_writer(multi_DB=multi_DB,export_path=export_path)
