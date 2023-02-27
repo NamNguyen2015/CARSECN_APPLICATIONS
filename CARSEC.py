@@ -50,7 +50,6 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
     with open(export_path+'.txt', 'w') as f:
         #f.write('CARSECN'+' \n')
         f.write(DB['titulo']+' \n')
-        
         f.write('* Tipo de seccion '+'\n')  
         f.write('secc '+str(DB['secc'])+' \n')
         f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')
@@ -170,7 +169,6 @@ def table_to_dict(dict_tables):
 	for i in ID_list:
 		multi_DB[i]=defaultdict(lambda: defaultdict(dict))
 		multi_DB[i]['titulo']=i
-
 		for k in dict_tables:
 			_df = dict_tables[k][dict_tables[k]['ID'] == i]
 			if k=='Properties':
@@ -182,8 +180,8 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['coef']['coef_arma']=_df['coef_arma'].tolist()[0]
 				multi_DB[i]['coef']['coef_pret']=_df['coef_pret'].tolist()[0]
 				# phi
-				multi_DB[i]['phi']['phi_compression']=_df['phicompression'].tolist()[0]
-				multi_DB[i]['phi']['phi_traction']=_df['traction'].tolist()[0]
+				multi_DB[i]['phi']['phi_compression']=_df['phi_compression'].tolist()[0]
+				multi_DB[i]['phi']['phi_traction']=_df['phi_traction'].tolist()[0]
 				#parameters for concrete
 				multi_DB[i]['horm']['fck']=_df['horm_fck'].tolist()[0]
 				# parameters for armadura
