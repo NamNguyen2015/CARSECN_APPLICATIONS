@@ -31,7 +31,7 @@ from collections import defaultdict,OrderedDict
 # DB['puntos']=[{'punt':1, 'X':0,'Y':0},{'punt':2, 'X':2,'Y':0},{...}] # pandasDataFrame.to_dict('records')
  
 
-# DB['horm']={'fck':float,'puntos_contorno':[[points],[points],...]}
+# DB['horm']={'E':float,'fck':float,'puntos_contorno':[[points],[points],...]}
 
 # DB['hp']=[[points],[points],...]  NOTE: this is a list of lists.
 # DB['hc']=[{punto:int,radio:float},{...}]
@@ -51,7 +51,7 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
         f.write(DB['titulo']+' \n')
         #f.write(DB['titulo']+' \n')
         f.write('* Tipo de seccion '+'\n')  
-        f.write('secc '+str(DB['secc'])+' \n')
+        f.write('secc '+str(DB['secc'])+' '+str(DB['horm']['E'])+' \n')
         f.write('* Unidades a emplear. Opciones: tm - knm - lbin'+'\n')
         f.write('unid '+str(DB['unid'])+' \n')
         f.write('* Normativa a emplear. Opciones: ehe  asashto '+'\n')  
@@ -90,8 +90,9 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             f.write('\n')
             
             
-        f.write('hc ') 
+        #f.write('hc ') 
         for v in DB['hc'] :
+            f.write('hc ')
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
@@ -109,9 +110,9 @@ def CARSEC_Writer(DB,export_path='CARSEC'):
             for k in v.keys():           
                 f.write(str(v[k])+' ')
             f.write('\n')
-            
-        f.write('pret '+str(DB['pret']['fpk'])+' \n')
+        #f.write('arma '+str(DB['arma']['fyk'])+' '+ str(DB['arma']['tension_inicial'])+' \n')    
         
+        f.write('pret '+str(DB['pret']['fpk'])+' '+ str(DB['pret']['tension_inicial'])+' \n')
         for v in DB['pret']['single']:
             for k in v.keys():           
                 f.write(str(v[k])+' ')
@@ -184,11 +185,14 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['phi']['phi_traction']=_df['phi_traction'].tolist()[0]
 				#parameters for concrete
 				multi_DB[i]['horm']['fck']=_df['horm_fck'].tolist()[0]
+				multi_DB[i]['horm']['E']=_df['E'].tolist()[0]
 				# parameters for armadura
 				multi_DB[i]['arma']['fyk']=_df['arma_fyk'].tolist()[0]
+				
 				#parameters for prestressing cables
 				multi_DB[i]['pret']['fpk']=_df['pret_fpk'].tolist()[0]
 				multi_DB[i]['pret']['tension_inicial']=_df['tension_inicial'].tolist()[0]
+				
 				#parameters for calculation type
 				multi_DB[i]['calc']=_df['calc'].tolist()[0]
 				
@@ -215,13 +219,13 @@ def table_to_dict(dict_tables):
 				multi_DB[i]['arma']['single']=_df.iloc[:,1:100].to_dict('records')
 			
 			elif k=="armadura_group":
-				multi_DB[i]['arma']['multi']=_df.iloc[:,1:100].to_dict('records')
+				multi_DB[i]['arma']['group']=_df.iloc[:,1:100].to_dict('records')
 				
 			elif k=="cable_single":
-				multi_DB[i]['arma']['single']=_df.iloc[:,1:100].to_dict('records')
+				multi_DB[i]['pret']['single']=_df.iloc[:,1:100].to_dict('records')
 			
 			elif k=="cable_group":
-				multi_DB[i]['pret']['multi']=_df.iloc[:,1:100].to_dict('records')
+				multi_DB[i]['pret']['group']=_df.iloc[:,1:100].to_dict('records')
 				
 			elif k=="LC":
 				multi_DB[i]['LC']=_df.iloc[:,1:100].dropna().to_dict('records')
