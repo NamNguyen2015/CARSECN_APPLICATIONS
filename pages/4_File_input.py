@@ -53,8 +53,8 @@ if os.path.exists(path):
 
 if uploaded_file is not None:
 	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path='/app/carsecn_applications/Output_files/Multi_CARSEC/CS_Multi_')
-	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path,'CS_Multi_'))
-	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=path)
+	CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path,'CS_Multi_'))
+	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path=path)
 	#CS.excel_to_CARSEC(load_path=uploaded_file,export_path=os.path.join(path,''))
 
 
