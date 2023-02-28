@@ -38,12 +38,12 @@ st.subheader('Download Muti CARSEC files')
 
 path1=os.getcwd()
 
-#path2=os.path.join(path1,'Output_files')
+path2=os.path.join(path1,'Output_files')
 
-#path3=os.path.join(path2,'Multi_CARSEC')
+path3=os.path.join(path2,'Multi_CARSEC')
 
 
-path=path1
+path=path3
 if os.path.exists(path):
 	dirs = os.listdir(path)
 	for file in dirs:
